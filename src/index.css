@@ -1,13 +1,1158 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Raleway:wght@100;300;400;500;700&family=Roboto:wght@100;300;500;700&display=swap');
+
+/* RESET CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+svg{
+  color: black;
+}
+
+/* HEADER */
+
+.navbar {
+  color: white;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  transition: all 100ms;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.navbar.active{
+  box-shadow: 0px 5px 5px  rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.navbar.active, .navbar.active svg {
+  color: black;
+  background-color: white;
+}
+
+.navbar.not-home, .navbar.not-home svg{
+  color: black;
+}
+
+.navbar.not-home{
+  background-color: white;
+}
+
+.navbar .name{
+  font-family: 'Lobster', cursive;
+  font-size: 25px;
+  padding: 3px 6px;
+}
+
+.navbar svg{
+  color: white;
+}
+
+nav{
+  background: transparent;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.name {
+  font: 2rem;
+  padding: 3px;
+}
+
+.menu-dropdown{
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-dropdown button{
+  background: inherit;
+  border: none;
+}
+
+/* DROPDOWN */
+
+.dropdown {
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  left: 0;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+
+}
+
+.navigation {
+  padding: 15px;
+}
+
+.navigation svg {
+  color: black;
+}
+
+.navigation button{
+  background: inherit;
+  border: none;
+  padding: 0.1rem;
+}
+
+
+/* FOOTER */
+
+footer{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background: linear-gradient(135.8deg, rgb(26, 26, 29) 27.1%, #5c110c 77.5%);
+}
+
+footer svg{
+  color: white;
+}
+
+footer button{
+  border: none;
+  background: none;
+}
+
+footer .user-info{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  padding-bottom: 30px;
+  font-size: 22px;
+}
+
+footer h4{
+  padding-right: 10px;
+}
+
+footer .developer-info{
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px 5px 0px 5px;
+  font-size: 14px;
+  align-items: center;
+}
+
+footer .developer-info a{
+  text-decoration: none;
+  color: inherit;
+}
+
+footer .developer-info svg{
+  padding: 5px;
+
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.contact p{
+  margin: 3px 0;
+}
+
+/* HOME */
+
+main .welcome {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: white;
+  background-image: url('https://media.istockphoto.com/id/1278745986/photo/culinary-background-with-traditional-ingredients-of-italian-cuisine.jpg?b=1&s=170667a&w=0&k=20&c=jct5dpWc9sFrs6g4_u9n1aV7IDBEJ5n3T9lF75sMft8=');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  animation-delay: 0.1s;
+}
+
+.welcome .intro{
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1px);
+  padding: 75px 25px 10px 25px;
+  display: grid;
+}
+
+
+.intro .greeting{
+  display: flex;
+  font-weight: 700;
+}
+
+.intro h1{
+  font-size: 30px;
+  padding: 5px 10px;
+  margin: 10px;
+  background-color: #DA291C;
+  border-radius: 2px;
+}
+
+.intro h2{
+  padding: 10px;
+}
+
+.intro h2 span{
+  color: #DA291C;
+}
+
+.intro p{
+  padding: 10px;
+}
+
+.first-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.first-button button{
+  background-color: #DA291C;
+  border-radius: 2px;
+  border: none;
+  padding: 10px 25px;
+  color: white;
+}
+
+.first-button a button{
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* FOOD SECTION */
+
+.food-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation-delay: 0.2s;
+}
+
+.header-2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-2{
+  font-family: 'Raleway', sans-serif;
+  padding: 20px;
+}
+
+/* food and button */
+.align-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.food-pictures{
+  width: 80vw;
+  height: 100%;
+  display: flex;
+  left: 0;
+  overflow: scroll;
+  box-shadow: inset -20px 0 20px -20px rgba(0, 0, 0, 0.5);
+}
+
+.food{
+  width: 9rem;
+  height: 9rem;
+  padding: 0.5rem;
+  margin: 5px;
+}
+
+.food img{
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.food-button{
+  border: none;
+  border-radius: 10px;
+  height: 100px;
+  margin: 0 5px;
+}
+
+/* recepies button */
+
+.recepies-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.recepies-button button{
+  background-color: #DA291C;
+  border-radius: 2px;
+  border: none;
+  padding: 10px 25px;
+}
+
+.recepies-button button a{
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+/* EXPERIENCE SECTION */
+
+.experiences {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Raleway', sans-serif;
+  margin-top: 20px;
+  color: white;
+  background-image: url('https://media.istockphoto.com/id/1169326482/video/chef-cooking-in-restaurant-kitchen-blurred-defocused-background.jpg?s=640x640&k=20&c=zHCvhmcllwprGxEN44M9u0ZrtUl91Q-5aty6llxwtX8=');
+  background-size: cover;
+  animation-delay: 0.3s;
+}
+
+.experiences a{
+  text-decoration: none;
+  color: black;
+}
+
+.experiences header{
+  color: white;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 24px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.experience {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px 35px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.experience.currently-working{
+  display: flex;
+  flex-direction: column;
+  background: rgba(113, 255, 113, 0.7);
+}
+
+.currently-working-h4{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.working-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.experience img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.description-wrapper h4 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  width: 150px;
+}
+
+.description-wrapper h5 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  width: 150px;
+}
+
+.description-wrapper p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+
+/* ABOUT ME */
+
+.profile-picture{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+.profile-picture img{
+  width: 200px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  transition: width 0.5s ease-in-out;
+}
+
+.profile-picture.active img{
+  width: 90%;
+}
+
+.about-me{
+  font-family: 'Raleway', sans-serif;
+  padding: 5px 40px 60px 40px;
+}
+
+.about .first-button{
+  margin: 20px;
+}
+
+/* LOGIN FORM */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  height: calc(100vh - 180px);  
+}
+
+.login-form label {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 80%;
+}
+
+.login-form label input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.login-submit-button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #0077cc;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.login-submit-button:hover {
+  background-color: #005ea3;
+}
+
+.reset-password{
+  color: black;
+  margin: 10px;
+}
+
+/* ADD RECEPIES */
+
+.add-recepies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 100px auto;
+  font-family: 'Raleway', sans-serif;
+}
+
+.add-recepies h2{
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.add-recepies div{
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-title textarea,
+.short-description textarea,
+.full-description textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.2s ease-in-out;
+  word-break: break-all;
+  
+  min-height: 20px;
+  overflow: hidden;
+  resize: none;
+}
+
+.full-description textarea{
+  white-space: pre-wrap;
+}
+
+.add-title textarea:focus,
+.short-description textarea:focus,
+.full-description textarea:focus {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.short-description.too-much textarea{
+  border: 1px solid red;
+}
+
+.short-description{
+  position: relative;
+}
+
+.letter-counter {
+  max-width: 50px;
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+  font-size: 12px;
+}
+
+.full-description, .full-description textarea{
+  min-height: 200px;
+}
+
+.add-image {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-image-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 200px;
+  border: 2px dashed gray;
+  cursor: pointer;
+}
+
+.add-image-preview {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.add-image-input {
+  display: none;
+}
+
+.recepie-submit {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.recepie-submit:disabled{
+  background-color: gray;
+}
+
+.recepie-submit:hover {
+  background-color: #0062cc;
+}
+
+h3 {
+  color: red;
+  margin-top: 20px;
+}
+
+/* RECEPIES */
+
+.recepies {
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  margin: 100px 0;
+}
+
+.recepies a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.recepie {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.recepie a{
+  display: flex;
+  max-width: 100%;
+}
+
+.recepie button{
+  border: none;
+  text-decoration: none;
+  background: inherit;
+}
+
+.recepie img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  padding: 5px;
+}
+
+.description {
+  max-width: 55%;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.description h4 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.description p {
+  font-size: 16px;
+  margin: 8px 0 0 0;
+  width: 100%;
+  min-height: 100%;
+  word-wrap: break-word;
+}
+
+.dimmed-background{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  backdrop-filter: blur(2px);
+}
+
+.admin-buttons{
+  display: flex;
+}
+
+.admin-buttons button{
+  margin: 5px 10px;
+  padding: 5px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.admin-buttons button:active{
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.confirm-delete {
+  z-index: 1000;
+  font-size: 24px;
+  width: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem;
+  border: 1px solid #f5c6cb;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  color: #343a40;
+  text-align: center;
+  line-height: 1.5;
+}
+
+
+.confirm-delete h4 {
+  margin-top: 0;
+}
+
+.confirm-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.confirm-buttons button {
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.confirm-buttons button:first-child {
+  background-color: #721c24;
+  color: #fff;
+  margin-right: 1rem;
+}
+
+.confirm-buttons button:first-child:hover {
+  background-color: #5c161e;
+}
+
+.confirm-buttons button:last-child {
+  background-color: #fff;
+  color: #721c24;
+}
+
+.confirm-buttons button:last-child:hover {
+  background-color: #eee;
+}
+
+.clicked svg{
+  color: goldenrod;
+}
+
+/* RECEPIE DETAIL */
+
+.recepie-detail {
+  padding: 20px;
+  text-align: center;
+  margin: 50px 0;
+  word-break: break-all;
+  font-family: 'Raleway', sans-serif;
+}
+
+.recepie-title {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.recepie-short-description {
+  font-size: 16px;
+  margin-top: 20px;
+  background-color: #b1b8d3;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.recepie-full-description {
+  font-size: 14px;
+  margin-top: 20px;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
+  text-align: start;
+}
+
+.recepie-detail img {
+  width: 100%;
+  max-width: 250px;
+  max-height: 300px;
+  object-fit: cover;
+  height: auto;
+  margin: 30px;
+  padding: 15px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  
+}
+
+@media (min-width: 480px) {
+
+/* NAVBAR */
+
+.dropdown {
+  flex-direction: row;
+  background: inherit;
+  margin-left: 200px;
+  justify-content: end;
+  position: static;
+}
+
+.dropdown div{
+  align-items: center;
+}
+
+.dropdown div button{
+  cursor: pointer;
+}
+
+.navbar.big-home .dropdown div button{
+  color: white;
+}
+
+.dropdown div button:hover{
+  text-decoration: underline;
+}
+
+.navbar h2{
+  font-size: 40px;
+  margin-left: 20px;
+}
+
+/* HOME */
+
+main .welcome{
+  font-size: 30px;
+  max-height: 500px;
+  min-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 150px 10% 20px 10%;
+  overflow: hidden;
+  background-position: center bottom;
+}
+
+.welcome::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.welcome .intro{
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background: none;
+}
+
+.intro h1{
+  font-size: 45px;
+}
+
+.intro h2{
+  font-weight: 500;
+}
+
+.intro p {
+  font-size: 24px;
+}
+
+.home-picture{
+  object-fit: cover;
+  width: 250px;
+  margin: 30px;
+  border-radius: 10px;
+  border: 5px solid white;
+  z-index: 100  ;
+}
+
+.first-button button:hover{
+  background-color: #b32116;
+  cursor: pointer;
+}
+
+.first-button button{
+  padding: 15px 35px;
+}
+
+/* FOOD */
+
+.header-2{
+  font-size: 40px;
+  margin: 20px 0;
+}
+
+/* food and button */
+
+.food-pictures{
+  width: 60vw;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+
+.food{
+  width: 10rem;
+  height: 10rem;
+  padding: 0.5rem;
+  margin-right: 30px;
+}
+
+/* recepies button */
+
+.recepies-button{
+  justify-content: flex-end;
+}
+
+.recepies-button button{
+  margin-top: 10px;
+  padding: 15px 35px;
+}
+
+.recepies-button button:hover{
+  cursor: pointer;
+  background-color: #b32116;
+}
+
+.recepies-button button a{
+  font-weight: 700;
+}
+
+/* EXPERIENCE SECTION */
+
+.experience-wrapper{
+  display: flex;
+}
+
+.experience{
+  width: 200px;
+  min-height: 300px;
+}
+
+.experience.currently-working{
+  width: 230px;
+}
+
+.experiences a{
+  margin: 20px; 
+}
+
+.experiences header{
+  margin-top: 35px;
+  font-size: 35px;
+  padding: 10px 25px;
+}
+
+.experience, .working-wrapper{
+  flex-direction: column;
+}
+
+.currently-working-h4{
+  font-size: 24px;
+}
+
+.experience img {
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 15px;
+}
+
+.description-wrapper h4 {
+  margin-top: 15px;
+  font-size: 1.5rem;
+}
+
+.description-wrapper h5 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.description-wrapper p {
+  font-size: 1rem;
+}
+
+/* LOGIN FORM */
+
+.login-form {
+  padding: 10px 60px;
+}
+
+.login-form label {
+  width: 300px;
+}
+
+.login-form label input {
+  padding: 15px;
+}
+
+.login-submit-button {
+  padding: 10px 30px;
+  font-size: 20px;
+}
+
+/* ABOUT ME */
+
+.about{
+  display: flex;
+  justify-content: center;
+  margin-top: 108px;
+  padding: 50px 250px;
+  height: calc(100vh - 288px);
+  box-sizing: border-box;
+}
+
+.profile-picture img{
+  width: 360px;
+}
+
+.about-me{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  padding: 40px;
+  width: 660px;
+}
+
+/* RECEPIES */
+
+.recepies {
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: 18rem 18rem 18rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.recepie{
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 350px;
+  position: relative;
+}
+
+.recepie a{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;  
+}
+
+.recipe-link{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+}
+
+.recepie img {
+  width: 150px;
+  height: 150px;
+  border-radius: 18px;
+}
+
+.description {
+  max-width: 70%;
+}
+
+.description h4 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.description p {
+  font-size: 1.1rem;
+}
+
+/* RECEPIE DETAIL */
+
+.recepie-detail {
+  padding-top: 108px;
+  min-height: calc(100vh - 280px);
+  box-sizing: border-box;
+}
+
+.details{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 200px;
+}
+
+.recepie-full-description {
+  font-size: 18px;
+}
+
 }
