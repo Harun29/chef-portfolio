@@ -953,6 +953,10 @@ main .welcome{
   margin: 20px 0;
 }
 
+.food-pictures{
+  box-shadow: none;
+}
+
 /* food and button */
 
 .food-pictures{
@@ -967,6 +971,24 @@ main .welcome{
   padding: 0.5rem;
   margin-right: 30px;
 }
+
+.food-pictures::-webkit-scrollbar {
+  width: 10px;
+}
+
+.food-pictures::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+.food-pictures::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+.food-pictures::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}
+
 
 /* recepies button */
 
