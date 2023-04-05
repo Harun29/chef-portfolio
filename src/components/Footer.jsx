@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer className="animate__animated animate__fadeInDown animate__faster">
       <div className="contact">
-        <p>Phone number: +38761061061</p>
-        <p>Email: eldarkarahmetovic@gmail.com</p>
+        <p>Phone number: +387 62 714 225</p>
+        <p>Email: <span>eldarkarahmetovic0@gmail.com</span></p>
       </div>
       <div className="user-info">
         <h4>Social:</h4>
