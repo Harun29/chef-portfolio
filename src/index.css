@@ -996,10 +996,6 @@ main .welcome{
 
 /* recepies button */
 
-.recepies-button{
-  justify-content: flex-end;
-}
-
 .recepies-button button{
   margin-top: 10px;
   padding: 15px 35px;
