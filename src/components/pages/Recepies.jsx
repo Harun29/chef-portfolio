@@ -19,6 +19,7 @@ const Recepies = () => {
   const {currentUser} = useAuth();
 
   const loadingLink = "/cooking_loader_2.gif";
+  const loadingCounter = [1, 2, 3, 4, 5, 6]
 
   // const listRef = ref(storage, 'images/');
 
@@ -125,64 +126,62 @@ const Recepies = () => {
     fetchData()
   }, [clickedStars])
 
-  if(!loading){
-    return(
-      <div className="recepies">
-      {confirmDelete ? 
-      <div className="dimmed-background"></div>
-      : null}
-      
-      {recepies.map(({id, title, shortDescription, imageURL}) => (
-        
-          <div className="recepie" key={id}>
-            <Link to={`/recepie-detail/${id}`} className={!currentUser ? "recipe-link" : ''}>
-              <img src={imageURL} alt="food" />
-              <div className="description">
-                <h4>{title}</h4>
-                <p>{shortDescription}</p>
-              </div>
-            </Link>
+  return(
+    <div className="recepies">
+    {confirmDelete ? 
+    <div className="dimmed-background"></div>
+    : null}
 
-            {currentUser ?
-            <div className="admin-buttons"> 
-              <button onClick={() => handleConfirm(id)}>
-                <FontAwesomeIcon icon={faTrash} size="xl" />
-              </button>
-              <button onClick={() => handleStar(id)}
-                      className={clickedStars.includes(id) ? "clicked" : ""}
-              >
-                <FontAwesomeIcon icon={faStar} size="xl"></FontAwesomeIcon>
-              </button>
-            </div>
-            : null}
-
-            {confirmDelete ? 
-              <div className="confirm-delete">
-                <h4>Jesi li siguran da zelis izbrisati ovaj recept?</h4>
-                <div className="confirm-buttons">
-                  <button onClick={handleDelete}>
-                    Da
-                  </button>
-                  <button onClick={() => setConfirmDelete(false)}>
-                    Ne
-                  </button>
-                </div>
-              </div>
-            : null}
-          </div>
-      ))}
-    </div>
-    )
-  } else{
-    return(
-      <div className="recepies
-      animate__animated 
-      animate__fadeInDown 
-      animate__faster">
-        <img src="" alt="" />
+    {loading ? 
+      loadingCounter.map(() => (
+      <div className="recepie">
+        <img src={loadingLink} alt="" />
+        <div className="descripti">
+          <h4></h4>
+          <p></p>
+        </div>
       </div>
-    )
-  }
+      ))
+    : recepies.map(({id, title, shortDescription, imageURL}) => (  
+        <div className="recepie" key={id}>
+          <Link to={`/recepie-detail/${id}`} className={!currentUser ? "recipe-link" : ''}>
+            <img src={imageURL} alt="food" />
+            <div className="description">
+              <h4>{title}</h4>
+              <p>{shortDescription}</p>
+            </div>
+          </Link>
+
+          {currentUser ?
+          <div className="admin-buttons"> 
+            <button onClick={() => handleConfirm(id)}>
+              <FontAwesomeIcon icon={faTrash} size="xl" />
+            </button>
+            <button onClick={() => handleStar(id)}
+                    className={clickedStars.includes(id) ? "clicked" : ""}
+            >
+              <FontAwesomeIcon icon={faStar} size="xl"></FontAwesomeIcon>
+            </button>
+          </div>
+          : null}
+
+          {confirmDelete ? 
+            <div className="confirm-delete">
+              <h4>Jesi li siguran da zelis izbrisati ovaj recept?</h4>
+              <div className="confirm-buttons">
+                <button onClick={handleDelete}>
+                  Da
+                </button>
+                <button onClick={() => setConfirmDelete(false)}>
+                  Ne
+                </button>
+              </div>
+            </div>
+          : null}
+        </div>
+    ))}
+  </div>
+  )
 }
  
 export default Recepies;
