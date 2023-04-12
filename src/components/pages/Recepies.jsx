@@ -16,7 +16,9 @@ const Recepies = () => {
   const [idToDelete, setIdToDelete] = useState('')
   const [docToDelete, setDocToDelete] = useState()
 
-  const {currentUser} = useAuth()
+  const {currentUser} = useAuth();
+
+  const loadingLink = "/cooking_loader_2.gif";
 
   // const listRef = ref(storage, 'images/');
 
@@ -177,7 +179,7 @@ const Recepies = () => {
       animate__animated 
       animate__fadeInDown 
       animate__faster">
-        loading...
+        <img src="" alt="" />
       </div>
     )
   }

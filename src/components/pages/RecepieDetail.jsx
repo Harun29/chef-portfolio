@@ -10,6 +10,8 @@ const RecepieDetail = () => {
   const [recepie, setRecepie] = useState([])
   const param = useParams();
 
+  const loadingLink = "/cooking_loader_2.gif";
+
   useEffect(() => {
 
     const fetchData = async() => {
@@ -36,26 +38,18 @@ const RecepieDetail = () => {
   }, [recepie])
 
 
-  if(!loading){
     return(
       <div className="recepie-detail">
         <h1 className="recepie-title">{recepie.title}</h1>
         <div className="details">
-          <img src={recepie.imgurl} alt="food" />
+          <img src={loading ? loadingLink : recepie.imgurl} alt="food" />
           <div className="recipe-description">
             <h4 className="recepie-short-description">{recepie.shortDescription}</h4>
             <p className="recepie-full-description">{recepie.fullDescription}</p>
           </div>
-        </div>
+        </div> 
       </div>
     )
-  } else {
-    return (  
-      <div className="recepie-detail">
-        Loading...
-      </div>
-    );
-  }
   
 }
  

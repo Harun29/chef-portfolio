@@ -9,6 +9,8 @@ const Food = () => {
   const [downloadUrl, setDownloadUrl] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const loadingLink = "/cooking_loader_2.gif";
+
   useEffect(() => {
 
     async function fetchData() {
@@ -49,7 +51,6 @@ const Food = () => {
     }
   }, [downloadUrl])
 
-  if(!loading){
     return(
       <div className="food-section 
         animate__animated 
@@ -63,7 +64,7 @@ const Food = () => {
             {downloadUrl.map(({id, url}) => (
               <Link key={id} to={`recepie-detail/${id}`}>
                 <div className="food">
-                    <img src={url} alt="" />
+                    <img src={loading ? loadingLink : url} alt="" />
                 </div>
               </Link>
             ))}
@@ -76,16 +77,6 @@ const Food = () => {
         </div>
       </div>
     )
-  } else{
-    return(
-      <div className="recepies
-      animate__animated 
-      animate__fadeInDown 
-      animate__faster">
-        loading...
-      </div>
-    )
-  }
 }
  
 export default Food;
