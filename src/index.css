@@ -812,47 +812,47 @@ h3 {
 /* RECEPIE DETAIL */
 
 .recepie-detail {
+  max-width: 800px;
+  margin: 140px auto 50px auto;
   padding: 20px;
-  text-align: center;
-  margin: 50px 0;
-  word-break: break-all;
-  font-family: 'Raleway', sans-serif;
-}
-
-.recepie-title {
-  font-size: 24px;
-  margin-top: 20px;
-}
-
-.recepie-short-description {
-  font-size: 16px;
-  margin-top: 20px;
-  background-color: #b1b8d3;
-  border-radius: 5px;
-  padding: 15px;
-}
-
-.recepie-full-description {
-  font-size: 14px;
-  margin-top: 20px;
-  word-wrap: break-word;
-  word-break: break-all;
-  white-space: pre-wrap;
-  text-align: start;
-}
-
-.recepie-detail img {
-  width: 100%;
-  max-width: 250px;
-  max-height: 300px;
-  object-fit: cover;
-  height: auto;
-  margin: 30px;
-  padding: 15px;
-  border: 1px solid gray;
-  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
   
-}
+  .recepie-title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+  }
+  
+  .details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+  
+  img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  }
+  
+  .recipe-description {
+  width: 100%;
+  }
+  
+  .recepie-short-description {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  }
+  
+  .recepie-full-description {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #555;
+  }
 
 @media (min-width: 480px) {
 
