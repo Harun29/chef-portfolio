@@ -11,6 +11,8 @@ const Food = () => {
 
   const loadingLink = "/cooking_loader_2.gif";
 
+  const loadingCounter = [1, 2, 3, 4, 5, 6]
+
   useEffect(() => {
 
     async function fetchData() {
@@ -51,32 +53,40 @@ const Food = () => {
     }
   }, [downloadUrl])
 
-    return(
-      <div className="food-section 
-        animate__animated 
-        animate__fadeInDown 
-        animate__faster">
-        <div className="background-2">
-          <div className="header-2">
-            <h1>My recipes</h1>
-          </div>
-          <div className="food-pictures">
-            {downloadUrl.map(({id, url}) => (
-              <Link key={id} to={`recepie-detail/${id}`}>
-                <div className="food">
-                    <img src={loading ? loadingLink : url} alt="" />
-                </div>
-              </Link>
+  return(
+    <div className="food-section 
+      animate__animated 
+      animate__fadeInDown 
+      animate__faster">
+      <div className="background-2">
+        <div className="header-2">
+          <h1>My recipes</h1>
+        </div>
+        <div className="food-pictures">
+
+          {loading ?
+            loadingCounter.map(() => (
+              <div className="food">
+                  <img src={loadingLink} alt="" />
+              </div>
+            ))
+          : downloadUrl.map(({id, url}) => (
+            <Link key={id} to={`recepie-detail/${id}`}>
+              <div className="food">
+                  <img src={url} alt="" />
+              </div>
+            </Link>
             ))}
-          </div>
-          <div className="recepies-button">
-            <button>
-              <Link to="/recepies">All recipes</Link>
-            </button>
-          </div>
+
+        </div>
+        <div className="recepies-button">
+          <button>
+            <Link to="/recepies">All recipes</Link>
+          </button>
         </div>
       </div>
-    )
+    </div>
+  )
 }
  
 export default Food;
