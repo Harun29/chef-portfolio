@@ -27,11 +27,7 @@ const Login = () => {
 
   return (
     <form onSubmit={handleSubmit}
-    className="
-    login-form
-    animate__animated 
-    animate__fadeInDown 
-    animate__faster">
+    className="login-form">
       <label>
         <input
           type="email"

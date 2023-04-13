@@ -27,12 +27,9 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="center-form">  
-      <form 
+    <form 
       className="login-signup-form"
       onSubmit={handleSubmit}>
-    
-      <h3>Enter your email:</h3>
 
       <div className="input-wrapper">
         <label>Email: </label>
@@ -49,7 +46,6 @@ const ResetPassword = () => {
       {message && <h2>{message}</h2>}
       <Link to="/admin"><button>Back to login</button></Link>
     </form>
-    </div>
   );
 }
  
