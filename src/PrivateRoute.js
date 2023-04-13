@@ -4,7 +4,7 @@ import { useAuth } from './context/AuthContext';
 const PrivateRoute = ({component: Component, ...rest}) => {
   const { currentUser } = useAuth();
 
-  const admin = 'eldarkarahmetovic@gmail.com'
+  const admin = 'eldarkarahmetovic0@gmail.com'
 
   return currentUser.email === admin ? (
     <Component {...rest}/>

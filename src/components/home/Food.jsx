@@ -11,7 +11,7 @@ const Food = () => {
 
   const loadingLink = "/cooking_loader_2.gif";
 
-  const loadingCounter = [1, 2, 3, 4, 5, 6]
+  const loadingCounter = [1, 2, 3, 4, 5]
 
   useEffect(() => {
 
@@ -66,9 +66,11 @@ const Food = () => {
 
           {loading ?
             loadingCounter.map(() => (
+            <div>
               <div className="food">
                   <img src={loadingLink} alt="" />
               </div>
+            </div>
             ))
           : downloadUrl.map(({id, url}) => (
             <Link key={id} to={`recepie-detail/${id}`}>
