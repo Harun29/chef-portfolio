@@ -143,7 +143,7 @@ const Recepies = () => {
       </div>
       ))
     : recepies.map(({id, title, shortDescription, imageURL}) => (  
-        <div className="recepie" key={id}>
+        <div className={currentUser ? "recepie loged" : "recepie"} key={id}>
           <Link to={`/recepie-detail/${id}`} className={!currentUser ? "recipe-link" : ''}>
             <img src={imageURL} alt="food" />
             <div className="description">

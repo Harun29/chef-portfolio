@@ -58,7 +58,7 @@ svg{
   left: 0;
   top: 0;
   z-index: 9999;
-  transition: all 100ms;
+  transition: all 0.1s;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -144,7 +144,6 @@ nav{
   border: none;
   padding: 0.1rem;
 }
-
 
 /* FOOTER */
 
@@ -1148,6 +1147,11 @@ main .welcome{
   justify-content: flex-start;
   min-height: 350px;
   position: relative;
+}
+
+.recepie.loged{
+  min-height: 420px;
+  justify-content: space-between;
 }
 
 .recepie a{
