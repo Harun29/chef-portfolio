@@ -165,6 +165,12 @@ footer svg{
 footer button{
   border: none;
   background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+footer button:hover{
+  transform: scale(1.2);
 }
 
 footer .user-info{
@@ -172,7 +178,7 @@ footer .user-info{
   align-items: center;
   justify-content: center;
   padding: 5px;
-  padding-bottom: 30px;
+  padding-bottom: 15px;
   font-size: 22px;
 }
 
@@ -446,6 +452,7 @@ main .welcome {
 
 
 /* ABOUT ME */
+
 
 .profile-picture{
   display: flex;
@@ -1087,23 +1094,43 @@ main .welcome{
 .about{
   display: flex;
   justify-content: center;
-  margin-top: 108px;
-  padding: 50px 250px;
+  align-items: center;
+  margin-top: 123px;
+  padding: 50px 40px;
   height: calc(100vh - 288px);
   box-sizing: border-box;
 }
 
 .profile-picture img{
   width: 360px;
+  min-width: 260px;
 }
 
 .about-me{
+  max-width: 85%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 1.8rem;
   padding: 40px;
-  width: 660px;
+  width: 760px;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.about-me::-webkit-scrollbar {
+  width: 10px;
+}
+
+.about-me::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+.about-me::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+.about-me::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
 }
 
 /* RECEPIES */
