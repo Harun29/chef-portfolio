@@ -65,15 +65,15 @@ const Food = () => {
         <div className="food-pictures">
 
           {loading ?
-            loadingCounter.map(() => (
-            <div>
+            loadingCounter.map((index) => (
+            <div key={index}>
               <div className="food">
                   <img src={loadingLink} alt="" />
               </div>
             </div>
             ))
           : downloadUrl.map(({id, url}) => (
-            <Link key={id} to={`recepie-detail/${id}`}>
+            <Link key={id} to={`recipe-detail/${id}`}>
               <div className="food">
                   <img src={url} alt="" />
               </div>
@@ -83,7 +83,7 @@ const Food = () => {
         </div>
         <div className="recepies-button">
           <button>
-            <Link to="/recepies">All recipes</Link>
+            <Link to="/recipes">All recipes</Link>
           </button>
         </div>
       </div>

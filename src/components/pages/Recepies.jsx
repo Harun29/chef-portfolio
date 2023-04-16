@@ -133,18 +133,14 @@ const Recepies = () => {
     : null}
 
     {loading ? 
-      loadingCounter.map(() => (
-      <div className="recepie">
+      loadingCounter.map((index) => (
+      <div key={index} className="recepie">
         <img src={loadingLink} alt="" />
-        <div className="descripti">
-          <h4></h4>
-          <p></p>
-        </div>
       </div>
       ))
     : recepies.map(({id, title, shortDescription, imageURL}) => (  
         <div className={currentUser ? "recepie loged" : "recepie"} key={id}>
-          <Link to={`/recepie-detail/${id}`} className={!currentUser ? "recipe-link" : ''}>
+          <Link to={`/recipe-detail/${id}`} className={!currentUser ? "recipe-link" : ''}>
             <img src={imageURL} alt="food" />
             <div className="description">
               <h4>{title}</h4>

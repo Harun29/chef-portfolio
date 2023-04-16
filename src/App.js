@@ -46,9 +46,9 @@ function App() {
               <Route path="/" element={<Home screen={bigScreen}/>} />
               <Route path="/about" element={<About screen={bigScreen} />} />
               <Route path="/admin" element={<Login />} />
-              <Route path="/recepies" element={<Recepies />} />
-              <Route path="/recepie-detail/:id" element={<RecepieDetail />} />
-              <Route path='/add-recepies' element={<PrivateRoute component={AddRecepie} />}/>
+              <Route path="/recipes" element={<Recepies />} />
+              <Route path="/recipe-detail/:id" element={<RecepieDetail />} />
+              <Route path='/add-recipe' element={<PrivateRoute component={AddRecepie} />}/>
               <Route path="/reset-password" element={<ResetPassword />} />
             </Routes>
           </div>

@@ -116,14 +116,14 @@ const Navbar = ({screen: bigScreen}) => {
         </div>
         
         <div className="navigation">
-          <Link to="/recepies">
+          <Link to="/recipes">
             <button onClick={handleDropdown}>Recipes</button>
           </Link>
         </div>
 
         {currentUser ? 
           <div className="navigation">
-            <Link to="/add-recepies">
+            <Link to="/add-recipe">
               <button onClick={handleDropdown}>Add Recepies</button>
             </Link>
           </div> 
