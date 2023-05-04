@@ -13,7 +13,7 @@ const Lessons = () => {
               <img src="https://www.plavalaguna.com/images/pl-logo.svg" alt="PL" />
               <div className="description-wrapper">
                 <h4>Plava laguna</h4>
-                <h5>Kuhar</h5>
+                <h5>Šef restorana</h5>
                 <p>x months</p>
               </div>
             </div>

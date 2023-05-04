@@ -15,8 +15,7 @@ const Recepies = () => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [idToDelete, setIdToDelete] = useState('')
   const [docToDelete, setDocToDelete] = useState()
-
-  const [imgToDelete, setImageToDelete] = useState()
+  
   const [objectToDelete, setObjectToDelete] = useState()
 
   const {currentUser} = useAuth();
@@ -55,7 +54,6 @@ const Recepies = () => {
 
   const handleConfirm = (id, imageName) => {
     setIdToDelete(id);
-    setImageToDelete(imageName);
     setConfirmDelete(true);
     setDocToDelete(doc(db, 'recepies', idToDelete))
     const imgName = "images/" + imageName
