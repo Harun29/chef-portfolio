@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getDocs, collection, deleteDoc, doc, query, where, updateDoc } from "firebase/firestore";
 import { db, storage } from "../../config/firebase";
-import { getDownloadURL, ref } from "firebase/storage";
+import { getDownloadURL, ref, getStorage, deleteObject } from "firebase/storage";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faStar } from "@fortawesome/free-solid-svg-icons";
@@ -16,16 +16,14 @@ const Recepies = () => {
   const [idToDelete, setIdToDelete] = useState('')
   const [docToDelete, setDocToDelete] = useState()
 
+  const [imgToDelete, setImageToDelete] = useState()
+  const [objectToDelete, setObjectToDelete] = useState()
+
   const {currentUser} = useAuth();
+  const storage = getStorage()
 
   const loadingLink = "/cooking_loader_2.gif";
   const loadingCounter = [1, 2, 3, 4, 5, 6]
-
-  // const listRef = ref(storage, 'images/');
-
-
-  // const imgNames = []
-  // const currentImagesNames = []
 
   useEffect(() => {
     async function fetchData() {
@@ -55,42 +53,20 @@ const Recepies = () => {
     }
   }, [recepies])
 
-  // useEffect(() => {
-  //   recepies.forEach((recepie) => {
-  //     currentImagesNames.push(recepie.imageName)
-  //   })
-  // }, [recepies])
-
-  // useEffect(() => {
-  //   imgNames.forEach((imgName) => {
-  //     if(!(currentImagesNames.contains(imgName))){
-  //       deleteObject(storage, imgName)
-  //     }
-  //   })
-  // }, [currentImagesNames])
-
-  // useEffect(() => {
-  //   listAll(listRef)
-  //     .then((res) => {
-  //       res.items.forEach((itemRef) => {
-  //         console.log(itemRef.name)
-  //         imgNames.push(itemRef.name)
-  //       });
-  //     }).catch((error) => {
-  //       console.error(error)
-  //     });
-  //     console.log("img names: ", imgNames)
-  // }, [])
-
-  const handleConfirm = (id) => {
+  const handleConfirm = (id, imageName) => {
     setIdToDelete(id);
+    setImageToDelete(imageName);
     setConfirmDelete(true);
     setDocToDelete(doc(db, 'recepies', idToDelete))
+    const imgName = "images/" + imageName
+    console.log(imgName)
+    setObjectToDelete(ref(storage, imgName))
   }
 
   const handleDelete = async () => {
     try{
       await deleteDoc(docToDelete)
+      await deleteObject(objectToDelete)
       setConfirmDelete(false)
       setRecepies(recepies.filter((item) => item.id !== idToDelete))
     }catch(error){
@@ -138,7 +114,7 @@ const Recepies = () => {
         <img src={loadingLink} alt="" />
       </div>
       ))
-    : recepies.map(({id, title, shortDescription, imageURL}) => (  
+    : recepies.map(({id, title, shortDescription, imageURL, imageName}) => (  
         <div className={currentUser ? "recepie loged" : "recepie"} key={id}>
           <Link to={`/recipe-detail/${id}`} className={!currentUser ? "recipe-link" : ''}>
             <img src={imageURL} alt="food" />
@@ -150,7 +126,7 @@ const Recepies = () => {
 
           {currentUser ?
           <div className="admin-buttons"> 
-            <button onClick={() => handleConfirm(id)}>
+            <button onClick={() => handleConfirm(id, imageName)}>
               <FontAwesomeIcon icon={faTrash} size="xl" />
             </button>
             <button onClick={() => handleStar(id)}
