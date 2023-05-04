@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getDocs, collection, deleteDoc, doc, query, where, updateDoc } from "firebase/firestore";
 import { db, storage } from "../../config/firebase";
-import { getDownloadURL, ref, getStorage, deleteObject } from "firebase/storage";
+import { getDownloadURL, ref, deleteObject } from "firebase/storage";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faStar } from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +19,6 @@ const Recepies = () => {
   const [objectToDelete, setObjectToDelete] = useState()
 
   const {currentUser} = useAuth();
-  const storage = getStorage()
 
   const loadingLink = "/cooking_loader_2.gif";
   const loadingCounter = [1, 2, 3, 4, 5, 6]

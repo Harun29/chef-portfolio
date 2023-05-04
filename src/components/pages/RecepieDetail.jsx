@@ -19,7 +19,6 @@ const RecepieDetail = () => {
       const querySnapshot = await getDoc(docRef);
       const recepie = querySnapshot.data();
       const url = await getDownloadURL(ref(storage, `images/${recepie.imgName}`));
-      console.log(querySnapshot.data())
       setRecepie({
         imgurl: url,
         title: recepie.title,
@@ -36,7 +35,6 @@ const RecepieDetail = () => {
       setLoading(false)
     }
   }, [recepie])
-
 
     return(
       <div className="recepie-detail">
