@@ -56,7 +56,6 @@ const Recepies = () => {
     setConfirmDelete(true);
     setDocToDelete(doc(db, 'recepies', idToDelete))
     const imgName = "images/" + imageName
-    console.log(imgName)
     setObjectToDelete(ref(storage, imgName))
   }
 
