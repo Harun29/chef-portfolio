@@ -5,8 +5,9 @@ const PrivateRoute = ({component: Component, ...rest}) => {
   const { currentUser } = useAuth();
 
   const admin = 'eldarkarahmetovic0@gmail.com'
+  const developer = 'harunibrahimovic01@gmail.com'
 
-  return currentUser.email === admin ? (
+  return currentUser.email === admin || developer ? (
     <Component {...rest}/>
   ) : (
     <Navigate to="/" />
