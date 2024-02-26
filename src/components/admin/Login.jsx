@@ -6,33 +6,32 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setError('');
+      setError("");
       setLoading(true);
       await login(email, password);
-      navigate('/')
+      navigate("/");
     } catch (err) {
-      console.error(err)
-      setError('Failed to login')
+      console.error(err);
+      setError("Failed to login");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}
-    className="login-form">
+    <form onSubmit={handleSubmit} className="login-form">
       <label>
         <input
           type="email"
           value={email}
-          placeholder='email'
+          placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
@@ -40,16 +39,19 @@ const Login = () => {
         <input
           type="password"
           value={password}
-          placeholder='password'
+          placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <button disabled={loading} className="login-submit-button" type="submit">Login</button>
-      <Link to="/reset-password" className="reset-password">Reset password</Link>
+      <button disabled={loading} className="login-submit-button" type="submit">
+        Login
+      </button>
+      <Link to="/reset-password" className="reset-password">
+        Reset password
+      </Link>
       {error && <p>{error}</p>}
     </form>
   );
+};
 
-}
- 
 export default Login;

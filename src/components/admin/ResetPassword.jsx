@@ -3,50 +3,54 @@ import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 
 const ResetPassword = () => {
-
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const { resetPassword } = useAuth();
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-      setMessage('')
-      setError('');
+    try {
+      setMessage("");
+      setError("");
       setLoading(true);
       await resetPassword(email);
-      setMessage('check your email for further instructinos!')
+      setMessage("check your email for further instructinos!");
     } catch (err) {
       setLoading(false);
-      setError('Failed to reset password')
+      setError("Failed to reset password");
       console.log(err);
     }
-
   };
 
   return (
-    <form 
-      className="login-signup-form"
-      onSubmit={handleSubmit}>
-
+    <form className="login-signup-form" onSubmit={handleSubmit}>
       <div className="input-wrapper">
         <label>Email: </label>
-        <input 
-        type="email"
-        required
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}/>
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
 
-      <input disabled={loading} type="submit" name="" id="" value="Reset password"/>
+      <input
+        disabled={loading}
+        type="submit"
+        name=""
+        id=""
+        value="Reset password"
+      />
 
       {error && <p>{error}</p>}
       {message && <h2>{message}</h2>}
-      <Link to="/admin"><button>Back to login</button></Link>
+      <Link to="/admin">
+        <button>Back to login</button>
+      </Link>
     </form>
   );
-}
- 
+};
+
 export default ResetPassword;

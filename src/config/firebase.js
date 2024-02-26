@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from "firebase/firestore"
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
@@ -9,7 +9,7 @@ const firebaseConfig = {
   projectId: "eldar-portfolio",
   storageBucket: "eldar-portfolio.appspot.com",
   messagingSenderId: "166604757151",
-  appId: "1:166604757151:web:eb5875c33c4a99405beaaa"
+  appId: "1:166604757151:web:eb5875c33c4a99405beaaa",
 };
 
 const app = initializeApp(firebaseConfig);

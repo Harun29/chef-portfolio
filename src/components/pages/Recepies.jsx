@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
-import { getDocs, collection, deleteDoc, doc, query, where, updateDoc } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  deleteDoc,
+  doc,
+  query,
+  where,
+  updateDoc,
+} from "firebase/firestore";
 import { db, storage } from "../../config/firebase";
 import { getDownloadURL, ref, deleteObject } from "firebase/storage";
 import { Link } from "react-router-dom";
@@ -8,67 +16,68 @@ import { faTrash, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../context/AuthContext";
 
 const Recepies = () => {
-
   const [clickedStars, setClickedStars] = useState([]);
   const [recepies, setRecepies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const [idToDelete, setIdToDelete] = useState('')
-  const [docToDelete, setDocToDelete] = useState()
-  
-  const [objectToDelete, setObjectToDelete] = useState()
+  const [idToDelete, setIdToDelete] = useState("");
+  const [docToDelete, setDocToDelete] = useState();
 
-  const {currentUser} = useAuth();
+  const [objectToDelete, setObjectToDelete] = useState();
+
+  const { currentUser } = useAuth();
 
   const loadingLink = "/cooking_loader_2.gif";
-  const loadingCounter = [1, 2, 3, 4, 5, 6]
+  const loadingCounter = [1, 2, 3, 4, 5, 6];
 
   useEffect(() => {
     async function fetchData() {
-      const usersRef = collection(db, 'recepies');
+      const usersRef = collection(db, "recepies");
       const querySnapshot = await getDocs(usersRef);
       const promises = querySnapshot.docs.map(async (doc) => {
         const recepie = doc.data();
-        const url = await getDownloadURL(ref(storage, `images/${recepie.imgName}`));
+        const url = await getDownloadURL(
+          ref(storage, `images/${recepie.imgName}`),
+        );
         return {
           id: doc.id,
           title: recepie.title,
-          shortDescription: recepie.sdescription,   
+          shortDescription: recepie.sdescription,
           imageURL: url,
-          imageName: recepie.imgName
+          imageName: recepie.imgName,
         };
       });
       const recepieSnapshot = await Promise.all(promises);
       setRecepies(recepieSnapshot);
     }
-    
+
     fetchData();
-  }, [])
+  }, []);
 
   useEffect(() => {
-    if (Object.keys(recepies).length > 0){
-      setLoading(false)
+    if (Object.keys(recepies).length > 0) {
+      setLoading(false);
     }
-  }, [recepies])
+  }, [recepies]);
 
   const handleConfirm = (id, imageName) => {
     setIdToDelete(id);
     setConfirmDelete(true);
-    setDocToDelete(doc(db, 'recepies', idToDelete))
-    const imgName = "images/" + imageName
-    setObjectToDelete(ref(storage, imgName))
-  }
+    setDocToDelete(doc(db, "recepies", idToDelete));
+    const imgName = "images/" + imageName;
+    setObjectToDelete(ref(storage, imgName));
+  };
 
   const handleDelete = async () => {
-    try{
-      await deleteDoc(docToDelete)
-      await deleteObject(objectToDelete)
-      setConfirmDelete(false)
-      setRecepies(recepies.filter((item) => item.id !== idToDelete))
-    }catch(error){
-      console.error(error)
+    try {
+      await deleteDoc(docToDelete);
+      await deleteObject(objectToDelete);
+      setConfirmDelete(false);
+      setRecepies(recepies.filter((item) => item.id !== idToDelete));
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
 
   const handleStar = (id) => {
     const docRef = doc(db, "recepies", id);
@@ -79,11 +88,11 @@ const Recepies = () => {
       setClickedStars([...clickedStars, id]);
       updateDoc(docRef, { star: "Yes" });
     }
-  };  
+  };
 
   useEffect(() => {
     async function fetchData() {
-      const recipeRef = collection(db, 'recepies');
+      const recipeRef = collection(db, "recepies");
       const starred = query(recipeRef, where("star", "==", "Yes"));
       const starredDoc = await getDocs(starred);
 
@@ -91,65 +100,73 @@ const Recepies = () => {
 
       starredDoc.forEach((doc) => {
         newClickedStars.push(doc.id);
-      })
+      });
 
       setClickedStars(newClickedStars);
     }
-    fetchData()
-  }, [clickedStars])
+    fetchData();
+  }, [clickedStars]);
 
-  return(
+  return (
     <div className="recepies">
-    {confirmDelete ? 
-    <div className="dimmed-background"></div>
-    : null}
+      {confirmDelete ? <div className="dimmed-background"></div> : null}
 
-    {loading ? 
-      loadingCounter.map((index) => (
-      <div key={index} className="recepie">
-        <img src={loadingLink} alt="" />
-      </div>
-      ))
-    : recepies.map(({id, title, shortDescription, imageURL, imageName}) => (  
-        <div className={currentUser ? "recepie loged" : "recepie"} key={id}>
-          <Link to={`/recipe-detail/${id}`} className={!currentUser ? "recipe-link" : ''}>
-            <img src={imageURL} alt="food" />
-            <div className="description">
-              <h4>{title}</h4>
-              <p>{shortDescription}</p>
+      {loading
+        ? loadingCounter.map((index) => (
+            <div key={index} className="recepie">
+              <img src={loadingLink} alt="" />
             </div>
-          </Link>
+          ))
+        : recepies.map(
+            ({ id, title, shortDescription, imageURL, imageName }) => (
+              <div
+                className={currentUser ? "recepie loged" : "recepie"}
+                key={id}
+              >
+                <Link
+                  to={`/recipe-detail/${id}`}
+                  className={!currentUser ? "recipe-link" : ""}
+                >
+                  <img src={imageURL} alt="food" />
+                  <div className="description">
+                    <h4>{title}</h4>
+                    <p>{shortDescription}</p>
+                  </div>
+                </Link>
 
-          {currentUser ?
-          <div className="admin-buttons"> 
-            <button onClick={() => handleConfirm(id, imageName)}>
-              <FontAwesomeIcon icon={faTrash} size="xl" />
-            </button>
-            <button onClick={() => handleStar(id)}
-                    className={clickedStars.includes(id) ? "clicked" : ""}
-            >
-              <FontAwesomeIcon icon={faStar} size="xl"></FontAwesomeIcon>
-            </button>
-          </div>
-          : null}
+                {currentUser ? (
+                  <div className="admin-buttons">
+                    <button onClick={() => handleConfirm(id, imageName)}>
+                      <FontAwesomeIcon icon={faTrash} size="xl" />
+                    </button>
+                    <button
+                      onClick={() => handleStar(id)}
+                      className={clickedStars.includes(id) ? "clicked" : ""}
+                    >
+                      <FontAwesomeIcon
+                        icon={faStar}
+                        size="xl"
+                      ></FontAwesomeIcon>
+                    </button>
+                  </div>
+                ) : null}
 
-          {confirmDelete ? 
-            <div className="confirm-delete">
-              <h4>Jesi li siguran da zelis izbrisati ovaj recept?</h4>
-              <div className="confirm-buttons">
-                <button onClick={handleDelete}>
-                  Da
-                </button>
-                <button onClick={() => setConfirmDelete(false)}>
-                  Ne
-                </button>
+                {confirmDelete ? (
+                  <div className="confirm-delete">
+                    <h4>Jesi li siguran da zelis izbrisati ovaj recept?</h4>
+                    <div className="confirm-buttons">
+                      <button onClick={handleDelete}>Da</button>
+                      <button onClick={() => setConfirmDelete(false)}>
+                        Ne
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
               </div>
-            </div>
-          : null}
-        </div>
-    ))}
-  </div>
-  )
-}
- 
+            ),
+          )}
+    </div>
+  );
+};
+
 export default Recepies;
