@@ -1352,4 +1352,19 @@ img {
   .recepie-full-description {
     font-size: 18px;
   }
+
+  /* restaurant */
+
+  .add-food-rating-container{
+    margin-top: 150px;
+  }
+
+  .add-food-rating{
+    width: 100vw;
+    height: 200px;
+    display: flex;
+  }
+
+
+
 }

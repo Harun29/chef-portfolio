@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import { db } from "../../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
-import { useNavigate } from "react-router";
 import { ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../config/firebase";
 import { v4 } from "uuid";
 
 const AddRestaurant = () => {
-
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [fullDescription, setFullDescription] = useState("");
@@ -20,6 +18,9 @@ const AddRestaurant = () => {
   const [imageUpload, setImageUpload] = useState(null);
   const [imgName, setImgName] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const [foodDescription, setFoodDescription] = useState("");
+  const [foodCounter, setFoodCounter] = useState([1]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -66,9 +67,8 @@ const AddRestaurant = () => {
       title,
       location,
       fdescription: fullDescription,
-      imgName
+      imgName,
     });
-
   }, [title, location, fullDescription, imgName]);
 
   /* FUNCTION FOR EXPANDING TEXT AREA */
@@ -79,8 +79,13 @@ const AddRestaurant = () => {
     e.target.style.height = `calc(${e.target.scrollHeight}px - 25px)`;
   };
 
-  return (
-    !addFood && <form
+  const handleAddMoreFood = () => {
+    setFoodCounter(prevFoodCounter => [...prevFoodCounter, 1]);
+    console.log(foodCounter)
+  };
+
+  return !addFood ? (
+    <form
       className="
     add-recepies
     animate__animated 
@@ -98,9 +103,7 @@ const AddRestaurant = () => {
           onChange={(e) => handleTextareaChange(e, setTitle)}
         />
       </div>
-      <div
-        className="short-description"
-      >
+      <div className="short-description">
         <textarea
           type="text"
           required
@@ -140,16 +143,51 @@ const AddRestaurant = () => {
         />
       </div>
 
-      <button
-        disabled={loading}
-        type="submit"
-        className="recepie-submit"
-      >
+      <button disabled={loading} type="submit" className="recepie-submit">
         Next
       </button>
 
       {error ? <h3>{error}</h3> : null}
     </form>
+  ) : (
+    <div className="add-food-rating-container">
+      {foodCounter.map(() => (
+        <form className="add-food-rating">
+          <div className="add-image">
+            <label htmlFor="image-upload" className="add-image-label">
+              {selectedImage ? (
+                <img
+                  src={selectedImage}
+                  alt="Selected"
+                  className="add-image-preview"
+                />
+              ) : (
+                <span>Select an image</span>
+              )}
+            </label>
+            <input
+              type="file"
+              id="image-upload"
+              className="add-image-input"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+          </div>
+          <div className="full-description">
+            <textarea
+              type="text"
+              required
+              value={foodDescription}
+              placeholder="description"
+              onChange={(e) => handleTextareaChange(e, setFoodDescription)}
+            />
+          </div>
+        </form>
+      ))}
+      <div onClick={handleAddMoreFood} className="add-more-food">
+        plus
+      </div>
+    </div>
   );
 };
 
