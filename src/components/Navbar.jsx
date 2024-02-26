@@ -126,6 +126,13 @@ const Navbar = ({ screen: bigScreen }) => {
               </Link>
             </div>
           ) : null}
+          {currentUser ? (
+            <div className="navigation">
+              <Link to="/add-restaurant">
+                <button onClick={handleDropdown}>Add Restaurant</button>
+              </Link>
+            </div>
+          ) : null}
 
           {currentUser ? (
             <div className="navigation">

@@ -9,6 +9,7 @@ import Recepies from "./components/pages/Recepies";
 import AddRecepie from "./components/admin/AddRecepie";
 import RecepieDetail from "./components/pages/RecepieDetail";
 import ResetPassword from "./components/admin/ResetPassword";
+import AddRestaurant from "./components/admin/AddRestaurant"
 
 import "animate.css";
 import { AuthProvider } from "./context/AuthContext";
@@ -54,6 +55,10 @@ function App() {
               <Route
                 path="/add-recipe"
                 element={<PrivateRoute component={AddRecepie} />}
+              />
+              <Route
+                path="/add-restaurant"
+                element={<PrivateRoute component={AddRestaurant} />}
               />
               <Route path="/reset-password" element={<ResetPassword />} />
             </Routes>
