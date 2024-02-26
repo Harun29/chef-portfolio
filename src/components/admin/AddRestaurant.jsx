@@ -7,14 +7,13 @@ import { storage } from "../../config/firebase";
 import { v4 } from "uuid";
 
 const AddRestaurant = () => {
-  const [numberOfLetters, setNumberOfLetters] = useState(0);
 
   const [title, setTitle] = useState("");
-  const [shortDescription, setShortDescription] = useState("");
+  const [location, setLocation] = useState("");
   const [fullDescription, setFullDescription] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [addFood, setAddFood] = useState("");
 
   const [recepie, setRecepie] = useState();
 
@@ -53,10 +52,10 @@ const AddRestaurant = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
-      await uploadFile();
-      await addData(recepie);
-      navigate("/");
+      // setLoading(true);
+      // await uploadFile();
+      // await addData(recepie);
+      setAddFood(true);
     } catch (err) {
       setError("Failed to add restaurant! Error: ", err);
     }
@@ -64,14 +63,13 @@ const AddRestaurant = () => {
 
   useEffect(() => {
     setRecepie({
-      title: title,
-      sdescription: shortDescription,
+      title,
+      location,
       fdescription: fullDescription,
-      imgName: imgName
+      imgName
     });
 
-    setNumberOfLetters(shortDescription.length);
-  }, [title, shortDescription, fullDescription, imgName]);
+  }, [title, location, fullDescription, imgName]);
 
   /* FUNCTION FOR EXPANDING TEXT AREA */
   const handleTextareaChange = (e, setFunction) => {
@@ -82,7 +80,7 @@ const AddRestaurant = () => {
   };
 
   return (
-    <form
+    !addFood && <form
       className="
     add-recepies
     animate__animated 
@@ -101,23 +99,22 @@ const AddRestaurant = () => {
         />
       </div>
       <div
-        className={`short-description ${numberOfLetters > 100 ? " too-much" : ""}`}
+        className="short-description"
       >
         <textarea
           type="text"
           required
-          value={shortDescription}
-          placeholder="short description"
-          onChange={(e) => handleTextareaChange(e, setShortDescription)}
+          value={location}
+          placeholder="location link"
+          onChange={(e) => handleTextareaChange(e, setLocation)}
         />
-        <div className="letter-counter">{numberOfLetters} / 100</div>
       </div>
       <div className="full-description">
         <textarea
           type="text"
           required
           value={fullDescription}
-          placeholder="full description"
+          placeholder="description"
           onChange={(e) => handleTextareaChange(e, setFullDescription)}
         />
       </div>
@@ -144,11 +141,11 @@ const AddRestaurant = () => {
       </div>
 
       <button
-        disabled={loading || numberOfLetters > 100}
+        disabled={loading}
         type="submit"
         className="recepie-submit"
       >
-        Submit
+        Next
       </button>
 
       {error ? <h3>{error}</h3> : null}
