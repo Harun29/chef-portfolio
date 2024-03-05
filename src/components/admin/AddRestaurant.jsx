@@ -19,8 +19,8 @@ const AddRestaurant = () => {
   const [imgName, setImgName] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const [foodDescription, setFoodDescription] = useState("");
-  const [foodCounter, setFoodCounter] = useState([1]);
+  const [foodForUpload, setFoodForUpload] = useState([{description: "", image: ""}]);
+  const [food, setFood] = useState([{description: "", image: ""}]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -80,9 +80,36 @@ const AddRestaurant = () => {
   };
 
   const handleAddMoreFood = () => {
-    setFoodCounter(prevFoodCounter => [...prevFoodCounter, 1]);
-    console.log(foodCounter)
+    const object = {
+      description: "",
+      image: ""
+    }
+    setFood(prevFoodCounter => [...prevFoodCounter, object]);
+    setFoodForUpload(prevFoodCounter => [...prevFoodCounter, object]);
   };
+
+  const handleFoodDescriptionChange = (description, index) => {
+    console.log("description: ", description)
+    console.log("index: ", index)
+    const newFood = foodForUpload;
+    newFood[index].description = description
+    setFoodForUpload(newFood)
+  }
+
+  const handleFoodImageChange = (e, index) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageUpload(file);
+      setImgName(file.name + v4());
+      const newFood = foodForUpload;
+      newFood[index].image = newFood[index].image = URL.createObjectURL(file)
+      setFoodForUpload(newFood)
+    }
+  };
+
+  useEffect(() => {
+    console.log(foodForUpload[0])
+  }, [foodForUpload])
 
   return !addFood ? (
     <form
@@ -151,13 +178,13 @@ const AddRestaurant = () => {
     </form>
   ) : (
     <div className="add-food-rating-container">
-      {foodCounter.map(() => (
-        <form className="add-food-rating">
+      {food.map((index) => (
+        <form key={index} className="add-food-rating">
           <div className="add-image">
             <label htmlFor="image-upload" className="add-image-label">
-              {selectedImage ? (
+              {foodForUpload[index].image ? (
                 <img
-                  src={selectedImage}
+                  src={foodForUpload[index].image}
                   alt="Selected"
                   className="add-image-preview"
                 />
@@ -170,16 +197,15 @@ const AddRestaurant = () => {
               id="image-upload"
               className="add-image-input"
               accept="image/*"
-              onChange={handleImageChange}
+              onChange={(e) => handleFoodImageChange(e, index)}
             />
           </div>
           <div className="full-description">
             <textarea
               type="text"
               required
-              value={foodDescription}
               placeholder="description"
-              onChange={(e) => handleTextareaChange(e, setFoodDescription)}
+              onChange={(e) => handleFoodDescriptionChange(e.value, index)}
             />
           </div>
         </form>
