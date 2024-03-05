@@ -19,8 +19,8 @@ const AddRestaurant = () => {
   const [imgName, setImgName] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const [food, setFood] = useState([0]);
   const [foodForUpload, setFoodForUpload] = useState([{description: "", image: ""}]);
-  const [food, setFood] = useState([{description: "", image: ""}]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -84,31 +84,31 @@ const AddRestaurant = () => {
       description: "",
       image: ""
     }
-    setFood(prevFoodCounter => [...prevFoodCounter, object]);
+    setFood(prevFoodCounter => [...prevFoodCounter, food.length]);
     setFoodForUpload(prevFoodCounter => [...prevFoodCounter, object]);
   };
 
   const handleFoodDescriptionChange = (description, index) => {
-    console.log("description: ", description)
-    console.log("index: ", index)
-    const newFood = foodForUpload;
-    newFood[index].description = description
-    setFoodForUpload(newFood)
-  }
+    const newFood = [...foodForUpload];
+    newFood[index].description = description;
+    setFoodForUpload(newFood);
+};
 
   const handleFoodImageChange = (e, index) => {
+    console.log("kflkasjlfkjsljdlaskj");
     const file = e.target.files[0];
     if (file) {
       setImageUpload(file);
       setImgName(file.name + v4());
-      const newFood = foodForUpload;
-      newFood[index].image = newFood[index].image = URL.createObjectURL(file)
+      const newFood = [...foodForUpload];
+      newFood[index].image = URL.createObjectURL(file);
+      console.log(newFood)
       setFoodForUpload(newFood)
     }
   };
 
   useEffect(() => {
-    console.log(foodForUpload[0])
+    console.log(foodForUpload)
   }, [foodForUpload])
 
   return !addFood ? (
@@ -205,7 +205,7 @@ const AddRestaurant = () => {
               type="text"
               required
               placeholder="description"
-              onChange={(e) => handleFoodDescriptionChange(e.value, index)}
+              onChange={(e) => handleFoodDescriptionChange(e.target.value, index)}
             />
           </div>
         </form>
