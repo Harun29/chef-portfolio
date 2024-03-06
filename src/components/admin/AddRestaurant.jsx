@@ -13,14 +13,14 @@ const AddRestaurant = () => {
   const [error, setError] = useState("");
   const [addFood, setAddFood] = useState("");
 
-  const [recepie, setRecepie] = useState();
+  const [restaurant, setRestaurant] = useState();
 
   const [imageUpload, setImageUpload] = useState(null);
   const [imgName, setImgName] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
 
   const [food, setFood] = useState([0]);
-  const [foodForUpload, setFoodForUpload] = useState([{description: "", image: ""}]);
+  const [foodForUpload, setFoodForUpload] = useState([{}]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -55,7 +55,7 @@ const AddRestaurant = () => {
     try {
       // setLoading(true);
       // await uploadFile();
-      // await addData(recepie);
+      // await addData(restaurant);
       setAddFood(true);
     } catch (err) {
       setError("Failed to add restaurant! Error: ", err);
@@ -63,7 +63,7 @@ const AddRestaurant = () => {
   };
 
   useEffect(() => {
-    setRecepie({
+    setRestaurant({
       title,
       location,
       fdescription: fullDescription,
@@ -82,34 +82,37 @@ const AddRestaurant = () => {
   const handleAddMoreFood = () => {
     const object = {
       description: "",
-      image: ""
-    }
-    setFood(prevFoodCounter => [...prevFoodCounter, food.length]);
-    setFoodForUpload(prevFoodCounter => [...prevFoodCounter, object]);
+      selectedImage: "",
+    };
+    setFood((prevFoodCounter) => [...prevFoodCounter, prevFoodCounter.length]);
+    setFoodForUpload((prevFoodCounter) => [...prevFoodCounter, object]);
   };
 
   const handleFoodDescriptionChange = (description, index) => {
+    console.log(index);
     const newFood = [...foodForUpload];
     newFood[index].description = description;
     setFoodForUpload(newFood);
-};
+  };
 
-  const handleFoodImageChange = (e, index) => {
-    console.log("kflkasjlfkjsljdlaskj");
-    const file = e.target.files[0];
+  const handleFoodImageChange = (file, index) => {
+    console.log(index);
     if (file) {
-      setImageUpload(file);
-      setImgName(file.name + v4());
       const newFood = [...foodForUpload];
-      newFood[index].image = URL.createObjectURL(file);
-      console.log(newFood)
-      setFoodForUpload(newFood)
+      newFood[index].imageUpload = file;
+      newFood[index].imgName = file.name + v4();
+      newFood[index].selectedImage = URL.createObjectURL(file);
+      setFoodForUpload(newFood);
     }
   };
 
   useEffect(() => {
-    console.log(foodForUpload)
-  }, [foodForUpload])
+    console.log(foodForUpload);
+  }, [foodForUpload]);
+
+  useEffect(() => {
+    console.log(imageUpload);
+  }, [imageUpload]);
 
   return !addFood ? (
     <form
@@ -180,11 +183,11 @@ const AddRestaurant = () => {
     <div className="add-food-rating-container">
       {food.map((index) => (
         <form key={index} className="add-food-rating">
-          <div className="add-image">
-            <label htmlFor="image-upload" className="add-image-label">
-              {foodForUpload[index].image ? (
+          <div key={index} className="add-image">
+            <label htmlFor={`image-upload-${index}`} className="add-image-label">
+              {foodForUpload[index].selectedImage ? (
                 <img
-                  src={foodForUpload[index].image}
+                  src={foodForUpload[index].selectedImage}
                   alt="Selected"
                   className="add-image-preview"
                 />
@@ -194,10 +197,10 @@ const AddRestaurant = () => {
             </label>
             <input
               type="file"
-              id="image-upload"
+              id={`image-upload-${index}`}
               className="add-image-input"
               accept="image/*"
-              onChange={(e) => handleFoodImageChange(e, index)}
+              onChange={(e) => handleFoodImageChange(e.target.files[0], index)}
             />
           </div>
           <div className="full-description">
@@ -205,7 +208,9 @@ const AddRestaurant = () => {
               type="text"
               required
               placeholder="description"
-              onChange={(e) => handleFoodDescriptionChange(e.target.value, index)}
+              onChange={(e) =>
+                handleFoodDescriptionChange(e.target.value, index)
+              }
             />
           </div>
         </form>
