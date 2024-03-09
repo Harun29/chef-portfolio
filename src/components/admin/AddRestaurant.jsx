@@ -117,20 +117,24 @@ const AddRestaurant = () => {
   }, [imageUpload]);
 
   const handleRateFood = (type, rating, index) => {
-    console.log(type)
+    const newFood = [...foodForUpload];
+    let color = "gold"
     if(type === "taste"){
-      console.log("im here")
-      const newFood = [...foodForUpload];
       newFood[index].taste = rating;
-      setFoodForUpload(newFood);
-      for(let a=1; a<=5; a++){
-        if(a <= rating){
-          document.getElementById(`taste-${index}-${a}`).setAttribute("fill", "brown")
-        }else{
-          document.getElementById(`taste-${index}-${a}`).setAttribute("fill", "none")
-        }
+      color = "brown"
+    }else if(type === "looks"){
+      newFood[index].looks = rating;
+    }else{
+      newFood[index].overall = rating;
+    }
+    for(let a=1; a<=5; a++){
+      if(a <= rating){
+        document.getElementById(`${type}-${index}-${a}`).setAttribute("fill", color)
+      }else{
+        document.getElementById(`${type}-${index}-${a}`).setAttribute("fill", "none")
       }
     }
+    setFoodForUpload(newFood);
   }
 
   return !addFood ? (
@@ -243,19 +247,19 @@ const AddRestaurant = () => {
             </div>
             <div className="food-rating-section">
               <span>Izgled</span>
-              <Star></Star>
-              <Star></Star>
-              <Star></Star>
-              <Star></Star>
-              <Star></Star>
+              <Star id={`looks-${index}-1`} onClick={() => handleRateFood("looks", 1, index)} ></Star>
+              <Star id={`looks-${index}-2`} onClick={() => handleRateFood("looks", 2, index)} ></Star>
+              <Star id={`looks-${index}-3`} onClick={() => handleRateFood("looks", 3, index)} ></Star>
+              <Star id={`looks-${index}-4`} onClick={() => handleRateFood("looks", 4, index)} ></Star>
+              <Star id={`looks-${index}-5`} onClick={() => handleRateFood("looks", 5, index)} ></Star>
             </div>
             <div className="food-rating-section">
               <span>Ukupan dojam</span>
-              <Star></Star>
-              <Star></Star>
-              <Star></Star>
-              <Star></Star>
-              <Star></Star>
+              <Star id={`overall-${index}-1`} onClick={() => handleRateFood("overall", 1, index)} ></Star>
+              <Star id={`overall-${index}-2`} onClick={() => handleRateFood("overall", 2, index)} ></Star>
+              <Star id={`overall-${index}-3`} onClick={() => handleRateFood("overall", 3, index)} ></Star>
+              <Star id={`overall-${index}-4`} onClick={() => handleRateFood("overall", 4, index)} ></Star>
+              <Star id={`overall-${index}-5`} onClick={() => handleRateFood("overall", 5, index)} ></Star>
             </div>
           </div>
         </form>

@@ -1,6 +1,8 @@
-const Star = () => {
+const Star = ({fill, id, onClick}) => {
   return (
     <svg
+      id={id}
+      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       class="icon icon-tabler icon-tabler-star"
       width="24"
@@ -8,7 +10,7 @@ const Star = () => {
       viewBox="0 0 24 24"
       stroke-width="2"
       stroke="currentColor"
-      fill="none"
+      fill={fill ? fill : "none"}
       stroke-linecap="round"
       stroke-linejoin="round"
     >
