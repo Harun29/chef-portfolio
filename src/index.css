@@ -89,6 +89,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -103,17 +104,21 @@ nav,
 section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -121,6 +126,7 @@ q:after {
   content: "";
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -1355,15 +1361,185 @@ img {
 
   /* add restaurant */
 
-  .add-food-rating-container{
+  .add-food-rating-container {
     margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  .add-food-rating{
-    width: 100vw;
+  .add-food-rating {
     height: 200px;
     display: flex;
+    margin: 10px 0;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 23px;
+    background: #ffffff;
+    box-shadow: 5px 5px 9px #e3e3e3,
+      -5px -5px 9px #ffffff;
   }
 
+  .food-description {
+    margin: 0 2rem;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .food-description textarea {
+    height: 90%;
+    width: 100%;
+    padding: 0;
+  }
+
+  .food-rating-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    margin: 5px 0;
+  }
+
+  .food-rating-section span {
+    margin-right: 10px;
+  }
+
+  .food-rating-section svg {
+    cursor: pointer;
+  }
+
+  /* plus button */
+
+  .button {
+    position: relative;
+    width: 155px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid #34974d;
+    background-color: #3aa856;
+    margin-bottom: 40px;
+    margin-top: 30px;
+  }
+
+  .button,
+  .button__icon,
+  .button__text {
+    transition: all 0.3s;
+  }
+
+  .button .button__text {
+    transform: translateX(30px);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .button .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: #34974d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button .svg {
+    width: 30px;
+    stroke: #fff;
+  }
+
+  .button:hover {
+    background: #34974d;
+  }
+
+  .button:hover .button__text {
+    color: transparent;
+  }
+
+  .button:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+  }
+
+  .button:active .button__icon {
+    background-color: #2e8644;
+  }
+
+  .button:active {
+    border: 1px solid #2e8644;
+  }
+
+  /* delete button */
+
+  .deleteButton {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .deleteButton svg {
+    width: 44%;
+  }
+  .deleteButton:hover {
+    background-color: rgb(237, 56, 56);
+    overflow: visible;
+  }
+  .bin path {
+    transition: all 0.2s;
+  }
+  .deleteButton:hover .bin path {
+    fill: #fff;
+  }
+  .deleteButton:active {
+    transform: scale(0.98);
+  }
+  .tooltip {
+    --tooltip-color: rgb(41, 41, 41);
+    position: absolute;
+    top: -40px;
+    background-color: var(--tooltip-color);
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 8px 12px;
+    font-weight: 600;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.105);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  .tooltip::before {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    content: "";
+    background-color: var(--tooltip-color);
+    bottom: -10%;
+  }
+  .deleteButton:hover .tooltip {
+    opacity: 1;
+  }
+  
 
 }

@@ -1,4 +1,4 @@
-const Meat = ({fill, id, onClick}) => {
+const Meat = ({size, fill, id, onClick}) => {
   console.log(fill)
   return (
     <svg
@@ -6,10 +6,10 @@ const Meat = ({fill, id, onClick}) => {
       onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       class="icon icon-tabler icon-tabler-meat"
-      width="24"
-      height="24"
+      width={size ? size : "24"}
+      height={size ? size : "24"}
       viewBox="0 0 24 24"
-      stroke-width="2"
+      stroke-width="1"
       stroke="currentColor"
       fill={fill ? fill : "none"}
       stroke-linecap="round"
