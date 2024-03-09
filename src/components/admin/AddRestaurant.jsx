@@ -85,6 +85,7 @@ const AddRestaurant = () => {
     const object = {
       description: "",
       selectedImage: "",
+      id: v4()
     };
     setFood((prevFoodCounter) => [...prevFoodCounter, prevFoodCounter.length]);
     setFoodForUpload((prevFoodCounter) => [...prevFoodCounter, object]);
@@ -108,14 +109,6 @@ const AddRestaurant = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(foodForUpload);
-  }, [foodForUpload]);
-
-  useEffect(() => {
-    console.log(imageUpload);
-  }, [imageUpload]);
-
   const handleRateFood = (type, rating, index) => {
     const newFood = [...foodForUpload];
     let color = "gold";
@@ -130,16 +123,61 @@ const AddRestaurant = () => {
     for (let a = 1; a <= 5; a++) {
       if (a <= rating) {
         document
-          .getElementById(`${type}-${index}-${a}`)
+          .getElementById(`${type}-${foodForUpload[index].id}-${a}`)
           .setAttribute("fill", color);
       } else {
         document
-          .getElementById(`${type}-${index}-${a}`)
+          .getElementById(`${type}-${foodForUpload[index].id}-${a}`)
           .setAttribute("fill", "none");
       }
     }
     setFoodForUpload(newFood);
   };
+  
+  const handleDeleteFood = (index) => {
+    const newFood = [...foodForUpload]
+    const newFoodCounter = [...food]
+    newFood.splice(index, 1)
+    newFoodCounter.pop()
+    newFood.forEach((dish) => {
+      for (let a = 1; a <= 5; a++) {
+        if (a <= dish.looks) {
+          document
+            .getElementById(`looks-${foodForUpload[index].id}-${a}`)
+            .setAttribute("fill", "gold");
+        } else{
+          document
+            .getElementById(`looks-${foodForUpload[index].id}-${a}`)
+            .setAttribute("fill", "none");
+        }
+        if (a <= dish.taste) {
+          document
+            .getElementById(`taste-${foodForUpload[index].id}-${a}`)
+            .setAttribute("fill", "brown");
+        }else{
+          document
+            .getElementById(`taste-${foodForUpload[index].id}-${a}`)
+            .setAttribute("fill", "none");
+        }
+        if (a <= dish.overall) {
+          document
+            .getElementById(`overall-${foodForUpload[index].id}-${a}`)
+            .setAttribute("fill", "gold");
+        }else{
+          document
+            .getElementById(`overall-${foodForUpload[index].id}-${a}`)
+            .setAttribute("fill", "none");
+        }
+      }
+    })
+    setFood(newFoodCounter);
+    setFoodForUpload(newFood);
+  }
+
+  useEffect(() => {
+    console.log(food)
+    console.log(foodForUpload)
+  }, [food, foodForUpload])
 
   return !addFood ? (
     <form
@@ -209,7 +247,7 @@ const AddRestaurant = () => {
   ) : (
     <div className="add-food-rating-container">
       {food.map((index) => (
-        <form key={index} className="add-food-rating">
+        <div key={index} className="add-food-rating">
           <div key={index} className="add-image">
             <label
               htmlFor={`image-upload-${index}`}
@@ -238,6 +276,7 @@ const AddRestaurant = () => {
               type="text"
               required
               placeholder="description"
+              value={foodForUpload[index].description}
               onChange={(e) =>
                 handleFoodDescriptionChange(e.target.value, index)
               }
@@ -249,27 +288,27 @@ const AddRestaurant = () => {
               <div>
                 <Meat
                   size={"40"}
-                  id={`taste-${index}-1`}
+                  id={`taste-${foodForUpload[index].id}-1`}
                   onClick={() => handleRateFood("taste", 1, index)}
                 ></Meat>
                 <Meat
                   size={"40"}
-                  id={`taste-${index}-2`}
+                  id={`taste-${foodForUpload[index].id}-2`}
                   onClick={() => handleRateFood("taste", 2, index)}
                 ></Meat>
                 <Meat
                   size={"40"}
-                  id={`taste-${index}-3`}
+                  id={`taste-${foodForUpload[index].id}-3`}
                   onClick={() => handleRateFood("taste", 3, index)}
                 ></Meat>
                 <Meat
                   size={"40"}
-                  id={`taste-${index}-4`}
+                  id={`taste-${foodForUpload[index].id}-4`}
                   onClick={() => handleRateFood("taste", 4, index)}
                 ></Meat>
                 <Meat
                   size={"40"}
-                  id={`taste-${index}-5`}
+                  id={`taste-${foodForUpload[index].id}-5`}
                   onClick={() => handleRateFood("taste", 5, index)}
                 ></Meat>
               </div>
@@ -279,27 +318,27 @@ const AddRestaurant = () => {
               <div>
                 <Star
                   size={"40"}
-                  id={`looks-${index}-1`}
+                  id={`looks-${foodForUpload[index].id}-1`}
                   onClick={() => handleRateFood("looks", 1, index)}
                 ></Star>
                 <Star
                   size={"40"}
-                  id={`looks-${index}-2`}
+                  id={`looks-${foodForUpload[index].id}-2`}
                   onClick={() => handleRateFood("looks", 2, index)}
                 ></Star>
                 <Star
                   size={"40"}
-                  id={`looks-${index}-3`}
+                  id={`looks-${foodForUpload[index].id}-3`}
                   onClick={() => handleRateFood("looks", 3, index)}
                 ></Star>
                 <Star
                   size={"40"}
-                  id={`looks-${index}-4`}
+                  id={`looks-${foodForUpload[index].id}-4`}
                   onClick={() => handleRateFood("looks", 4, index)}
                 ></Star>
                 <Star
                   size={"40"}
-                  id={`looks-${index}-5`}
+                  id={`looks-${foodForUpload[index].id}-5`}
                   onClick={() => handleRateFood("looks", 5, index)}
                 ></Star>
               </div>
@@ -309,33 +348,33 @@ const AddRestaurant = () => {
               <div>
                 <Star
                   size={"40"}
-                  id={`overall-${index}-1`}
+                  id={`overall-${foodForUpload[index].id}-1`}
                   onClick={() => handleRateFood("overall", 1, index)}
                 ></Star>
                 <Star
                   size={"40"}
-                  id={`overall-${index}-2`}
+                  id={`overall-${foodForUpload[index].id}-2`}
                   onClick={() => handleRateFood("overall", 2, index)}
                 ></Star>
                 <Star
                   size={"40"}
-                  id={`overall-${index}-3`}
+                  id={`overall-${foodForUpload[index].id}-3`}
                   onClick={() => handleRateFood("overall", 3, index)}
                 ></Star>
                 <Star
                   size={"40"}
-                  id={`overall-${index}-4`}
+                  id={`overall-${foodForUpload[index].id}-4`}
                   onClick={() => handleRateFood("overall", 4, index)}
                 ></Star>
                 <Star
                   size={"40"}
-                  id={`overall-${index}-5`}
+                  id={`overall-${foodForUpload[index].id}-5`}
                   onClick={() => handleRateFood("overall", 5, index)}
                 ></Star>
               </div>
             </div>
           </div>
-          <button class="deleteButton">
+          {index > 0 && <button onClick={() => handleDeleteFood(index)} class="deleteButton">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -363,8 +402,8 @@ const AddRestaurant = () => {
             </svg>
 
             <span class="tooltip">Delete</span>
-          </button>
-        </form>
+          </button>}
+        </div>
       ))}
       <div onClick={handleAddMoreFood} className="add-more-food">
         <button type="button" class="button">

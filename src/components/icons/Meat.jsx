@@ -1,5 +1,4 @@
 const Meat = ({size, fill, id, onClick}) => {
-  console.log(fill)
   return (
     <svg
       id={id}
