@@ -1353,7 +1353,7 @@ img {
     font-size: 18px;
   }
 
-  /* restaurant */
+  /* add restaurant */
 
   .add-food-rating-container{
     margin-top: 150px;
@@ -1364,5 +1364,6 @@ img {
     height: 200px;
     display: flex;
   }
+
 
 }

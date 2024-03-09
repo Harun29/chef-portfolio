@@ -4,6 +4,8 @@ import { addDoc, collection } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../config/firebase";
 import { v4 } from "uuid";
+import Meat from "../icons/Meat"
+import Star from "../icons/Star"
 
 const AddRestaurant = () => {
   const [title, setTitle] = useState("");
@@ -114,6 +116,23 @@ const AddRestaurant = () => {
     console.log(imageUpload);
   }, [imageUpload]);
 
+  const handleRateFood = (type, rating, index) => {
+    console.log(type)
+    if(type === "taste"){
+      console.log("im here")
+      const newFood = [...foodForUpload];
+      newFood[index].taste = rating;
+      setFoodForUpload(newFood);
+      for(let a=1; a<=5; a++){
+        if(a <= rating){
+          document.getElementById(`taste-${index}-${a}`).setAttribute("fill", "brown")
+        }else{
+          document.getElementById(`taste-${index}-${a}`).setAttribute("fill", "none")
+        }
+      }
+    }
+  }
+
   return !addFood ? (
     <form
       className="
@@ -212,6 +231,32 @@ const AddRestaurant = () => {
                 handleFoodDescriptionChange(e.target.value, index)
               }
             />
+          </div>
+          <div className="food-rating">
+            <div className="food-rating-section">
+              <span>Ukus</span>
+              <Meat id={`taste-${index}-1`} onClick={() => handleRateFood("taste", 1, index)}></Meat>
+              <Meat id={`taste-${index}-2`} onClick={() => handleRateFood("taste", 2, index)}></Meat>
+              <Meat id={`taste-${index}-3`} onClick={() => handleRateFood("taste", 3, index)}></Meat>
+              <Meat id={`taste-${index}-4`} onClick={() => handleRateFood("taste", 4, index)}></Meat>
+              <Meat id={`taste-${index}-5`} onClick={() => handleRateFood("taste", 5, index)}></Meat>
+            </div>
+            <div className="food-rating-section">
+              <span>Izgled</span>
+              <Star></Star>
+              <Star></Star>
+              <Star></Star>
+              <Star></Star>
+              <Star></Star>
+            </div>
+            <div className="food-rating-section">
+              <span>Ukupan dojam</span>
+              <Star></Star>
+              <Star></Star>
+              <Star></Star>
+              <Star></Star>
+              <Star></Star>
+            </div>
           </div>
         </form>
       ))}
