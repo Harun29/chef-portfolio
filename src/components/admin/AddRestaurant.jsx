@@ -111,25 +111,12 @@ const AddRestaurant = () => {
 
   const handleRateFood = (type, rating, index) => {
     const newFood = [...foodForUpload];
-    let color = "gold";
     if (type === "taste") {
       newFood[index].taste = rating;
-      color = "brown";
     } else if (type === "looks") {
       newFood[index].looks = rating;
     } else {
       newFood[index].overall = rating;
-    }
-    for (let a = 1; a <= 5; a++) {
-      if (a <= rating) {
-        document
-          .getElementById(`${type}-${foodForUpload[index].id}-${a}`)
-          .setAttribute("fill", color);
-      } else {
-        document
-          .getElementById(`${type}-${foodForUpload[index].id}-${a}`)
-          .setAttribute("fill", "none");
-      }
     }
     setFoodForUpload(newFood);
   };
@@ -139,37 +126,6 @@ const AddRestaurant = () => {
     const newFoodCounter = [...food]
     newFood.splice(index, 1)
     newFoodCounter.pop()
-    newFood.forEach((dish) => {
-      for (let a = 1; a <= 5; a++) {
-        if (a <= dish.looks) {
-          document
-            .getElementById(`looks-${foodForUpload[index].id}-${a}`)
-            .setAttribute("fill", "gold");
-        } else{
-          document
-            .getElementById(`looks-${foodForUpload[index].id}-${a}`)
-            .setAttribute("fill", "none");
-        }
-        if (a <= dish.taste) {
-          document
-            .getElementById(`taste-${foodForUpload[index].id}-${a}`)
-            .setAttribute("fill", "brown");
-        }else{
-          document
-            .getElementById(`taste-${foodForUpload[index].id}-${a}`)
-            .setAttribute("fill", "none");
-        }
-        if (a <= dish.overall) {
-          document
-            .getElementById(`overall-${foodForUpload[index].id}-${a}`)
-            .setAttribute("fill", "gold");
-        }else{
-          document
-            .getElementById(`overall-${foodForUpload[index].id}-${a}`)
-            .setAttribute("fill", "none");
-        }
-      }
-    })
     setFood(newFoodCounter);
     setFoodForUpload(newFood);
   }
@@ -288,26 +244,31 @@ const AddRestaurant = () => {
               <span>Ukus</span>
               <div>
                 <Meat
+                  fill={foodForUpload[index].taste >= 1 ? "brown" : "none"}
                   size={"40"}
                   id={`taste-${foodForUpload[index].id}-1`}
                   onClick={() => handleRateFood("taste", 1, index)}
                 ></Meat>
                 <Meat
+                  fill={foodForUpload[index].taste >= 2 ? "brown" : "none"}
                   size={"40"}
                   id={`taste-${foodForUpload[index].id}-2`}
                   onClick={() => handleRateFood("taste", 2, index)}
                 ></Meat>
                 <Meat
+                  fill={foodForUpload[index].taste >= 3 ? "brown" : "none"}
                   size={"40"}
                   id={`taste-${foodForUpload[index].id}-3`}
                   onClick={() => handleRateFood("taste", 3, index)}
                 ></Meat>
                 <Meat
+                  fill={foodForUpload[index].taste >= 4 ? "brown" : "none"}
                   size={"40"}
                   id={`taste-${foodForUpload[index].id}-4`}
                   onClick={() => handleRateFood("taste", 4, index)}
                 ></Meat>
                 <Meat
+                  fill={foodForUpload[index].taste >= 5 ? "brown" : "none"}
                   size={"40"}
                   id={`taste-${foodForUpload[index].id}-5`}
                   onClick={() => handleRateFood("taste", 5, index)}
@@ -318,26 +279,31 @@ const AddRestaurant = () => {
               <span>Izgled</span>
               <div>
                 <Star
+                  fill={foodForUpload[index].looks >= 1 ? "gold" : "none"}
                   size={"40"}
                   id={`looks-${foodForUpload[index].id}-1`}
                   onClick={() => handleRateFood("looks", 1, index)}
                 ></Star>
                 <Star
+                  fill={foodForUpload[index].looks >= 2 ? "gold" : "none"}
                   size={"40"}
                   id={`looks-${foodForUpload[index].id}-2`}
                   onClick={() => handleRateFood("looks", 2, index)}
                 ></Star>
                 <Star
+                  fill={foodForUpload[index].looks >= 3 ? "gold" : "none"}
                   size={"40"}
                   id={`looks-${foodForUpload[index].id}-3`}
                   onClick={() => handleRateFood("looks", 3, index)}
                 ></Star>
                 <Star
+                  fill={foodForUpload[index].looks >= 4 ? "gold" : "none"}
                   size={"40"}
                   id={`looks-${foodForUpload[index].id}-4`}
                   onClick={() => handleRateFood("looks", 4, index)}
                 ></Star>
                 <Star
+                  fill={foodForUpload[index].looks >= 5 ? "gold" : "none"}
                   size={"40"}
                   id={`looks-${foodForUpload[index].id}-5`}
                   onClick={() => handleRateFood("looks", 5, index)}
@@ -348,26 +314,31 @@ const AddRestaurant = () => {
               <span>Ukupan dojam</span>
               <div>
                 <Star
+                  fill={foodForUpload[index].overall >= 1 ? "gold" : "none"}
                   size={"40"}
                   id={`overall-${foodForUpload[index].id}-1`}
                   onClick={() => handleRateFood("overall", 1, index)}
                 ></Star>
                 <Star
+                  fill={foodForUpload[index].overall >= 2 ? "gold" : "none"}
                   size={"40"}
                   id={`overall-${foodForUpload[index].id}-2`}
                   onClick={() => handleRateFood("overall", 2, index)}
                 ></Star>
                 <Star
+                  fill={foodForUpload[index].overall >= 3 ? "gold" : "none"}
                   size={"40"}
                   id={`overall-${foodForUpload[index].id}-3`}
                   onClick={() => handleRateFood("overall", 3, index)}
                 ></Star>
                 <Star
+                  fill={foodForUpload[index].overall >= 4 ? "gold" : "none"}
                   size={"40"}
                   id={`overall-${foodForUpload[index].id}-4`}
                   onClick={() => handleRateFood("overall", 4, index)}
                 ></Star>
                 <Star
+                  fill={foodForUpload[index].overall >= 5 ? "gold" : "none"}
                   size={"40"}
                   id={`overall-${foodForUpload[index].id}-5`}
                   onClick={() => handleRateFood("overall", 5, index)}
