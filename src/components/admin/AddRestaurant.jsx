@@ -246,6 +246,7 @@ const AddRestaurant = () => {
     </form>
   ) : (
     <div className="add-food-rating-container">
+      <span className="add-food-header">Dodaj jelo:</span>
       {food.map((index) => (
         <div key={index} className="add-food-rating">
           <div key={index} className="add-image">
