@@ -406,8 +406,8 @@ const AddRestaurant = () => {
           </button>}
         </div>
       ))}
-      <div onClick={handleAddMoreFood} className="add-more-food">
-        <button type="button" class="button">
+      <div className="add-more-food">
+        <button onClick={handleAddMoreFood} type="button" class="button">
           <span class="button__text">Add Item</span>
           <span class="button__icon">
             <svg
