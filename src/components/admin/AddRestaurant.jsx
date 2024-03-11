@@ -23,6 +23,17 @@ const AddRestaurant = () => {
 
   const [food, setFood] = useState([0]);
   const [foodForUpload, setFoodForUpload] = useState([{}]);
+  const [overallFoodRating, setOverallFoodRating] = useState()
+
+  const [exteriorRating, setExteriorRating] = useState()
+  const [interiorRating, setInteriorRating] = useState()
+  const [locationRating, setLocationRating] = useState()
+  const [overallLooksRating, setOverallLooksRating] = useState()
+  
+  const [hostingRating, setHostingRating] = useState()
+  const [foodPresentationRating, setFoodPresentationRating] = useState()
+  const [customerServiceRating, setCustomerServiceRating] = useState()
+  const [overallServiceRating, setOverallServiceRating] = useState()
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
