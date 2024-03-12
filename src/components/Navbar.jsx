@@ -71,7 +71,7 @@ const Navbar = ({ screen: bigScreen }) => {
     animate__faster`}
     >
       <div className="name">
-        <h2>Eldar K.</h2>
+        <h2>ECA</h2>
       </div>
 
       {!bigScreen ? (
