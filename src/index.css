@@ -997,197 +997,228 @@ img {
   color: #555;
 }
 
-  /* plus button */
+/* plus button */
 
-  .button {
-    position: relative;
-    width: 155px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    border: 1px solid #34974d;
-    background-color: #3aa856;
-    margin-bottom: 40px;
-    margin-top: 30px;
-  }
+.button {
+  position: relative;
+  width: 155px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #34974d;
+  background-color: #3aa856;
+  margin-bottom: 40px;
+  margin-top: 30px;
+}
 
-  .button,
-  .button__icon,
-  .button__text {
-    transition: all 0.3s;
-  }
+.button,
+.button__icon,
+.button__text {
+  transition: all 0.3s;
+}
 
-  .button .button__text {
-    transform: translateX(30px);
-    color: #fff;
-    font-weight: 600;
-  }
+.button .button__text {
+  transform: translateX(30px);
+  color: #fff;
+  font-weight: 600;
+}
 
-  .button .button__icon {
-    position: absolute;
-    transform: translateX(109px);
-    height: 100%;
-    width: 39px;
-    background-color: #34974d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #34974d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .button .svg {
-    width: 30px;
-    stroke: #fff;
-  }
+.button .svg {
+  width: 30px;
+  stroke: #fff;
+}
 
-  .button:hover {
-    background: #34974d;
-  }
+.button:hover {
+  background: #34974d;
+}
 
-  .button:hover .button__text {
-    color: transparent;
-  }
+.button:hover .button__text {
+  color: transparent;
+}
 
-  .button:hover .button__icon {
-    width: 148px;
-    transform: translateX(0);
-  }
+.button:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
 
-  .button:active .button__icon {
-    background-color: #2e8644;
-  }
+.button:active .button__icon {
+  background-color: #2e8644;
+}
 
-  .button:active {
-    border: 1px solid #2e8644;
-  }
+.button:active {
+  border: 1px solid #2e8644;
+}
 
-  /* delete button */
+/* delete button */
 
-  .deleteButton {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    background-color: transparent;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .deleteButton svg {
-    width: 44%;
-  }
-  .deleteButton:hover {
-    background-color: rgb(237, 56, 56);
-    overflow: visible;
-  }
-  .bin path {
-    transition: all 0.2s;
-  }
-  .deleteButton:hover .bin path {
-    fill: #fff;
-  }
-  .deleteButton:active {
-    transform: scale(0.98);
-  }
-  .tooltip {
-    --tooltip-color: rgb(41, 41, 41);
-    position: absolute;
-    top: -40px;
-    background-color: var(--tooltip-color);
-    color: white;
-    border-radius: 5px;
-    font-size: 12px;
-    padding: 8px 12px;
-    font-weight: 600;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.105);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: all 0.5s;
-  }
-  .tooltip::before {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    transform: rotate(45deg);
-    content: "";
-    background-color: var(--tooltip-color);
-    bottom: -10%;
-  }
-  .deleteButton:hover .tooltip {
-    opacity: 1;
-  }
+.deleteButton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
 
-  /* add restaurant */
+.deleteButton svg {
+  width: 44%;
+}
 
-  .add-food-rating-container {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+.deleteButton:hover {
+  background-color: rgb(237, 56, 56);
+  overflow: visible;
+}
 
-  .add-food-rating {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    width: 80%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow:  5px 5px 18px #acacac,
-                -5px -5px 18px #ffffff;
-  }
+.bin path {
+  transition: all 0.2s;
+}
 
-  .food-description {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.deleteButton:hover .bin path {
+  fill: #fff;
+}
 
-  .food-description textarea {
-    padding: 0;
-    width: 95%;
-    height: 95%;
-  }
+.deleteButton:active {
+  transform: scale(0.98);
+}
 
-  .food-rating-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1rem;
-    margin: 5px 0;
-  }
+.tooltip {
+  --tooltip-color: rgb(41, 41, 41);
+  position: absolute;
+  top: -40px;
+  background-color: var(--tooltip-color);
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 8px 12px;
+  font-weight: 600;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.105);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.5s;
+}
 
-  .food-rating-section span {
-    margin-right: 10px;
-  }
+.tooltip::before {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  content: "";
+  background-color: var(--tooltip-color);
+  bottom: -10%;
+}
 
-  .food-rating-section svg {
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
+.deleteButton:hover .tooltip {
+  opacity: 1;
+}
 
-  .food-rating-section svg:hover{
-    scale: 1.1;
-  }
+/* add restaurant */
 
-  .add-food-header{
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
+.add-food-rating-container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-food-rating {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 5px 5px 18px #acacac,
+    -5px -5px 18px #ffffff;
+}
+
+.food-description {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.food-description textarea {
+  padding: 0;
+  width: 95%;
+  height: 95%;
+}
+
+.food-rating-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.food-rating-section span {
+  margin-right: 10px;
+}
+
+.food-rating-section svg {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.food-rating-section svg:hover {
+  scale: 1.1;
+}
+
+.add-food-header {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.restaurant-rating-container {
+  margin-bottom: 20px;
+  padding: 20px 40px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 5px 5px 18px #acacac,
+    -5px -5px 18px #ffffff;
+}
+
+.restaurant-rating-container svg {
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.restaurant-rating-container svg:hover {
+  scale: 1.1;
+}
+
+.recepie-submit.finish{
+  margin-bottom: 20px;
+}
 
 @media (min-width: 480px) {
   /* NAVBAR */
@@ -1551,9 +1582,9 @@ img {
     font-size: 18px;
   }
 
-/* add food */
+  /* add food */
 
-  .add-food-rating-container{
+  .add-food-rating-container {
     margin-top: 150px;
   }
 
@@ -1563,11 +1594,11 @@ img {
     height: 100%;
   }
 
-  .food-rating{
+  .food-rating {
     min-width: 310px;
   }
 
-  .add-food-rating{
+  .add-food-rating {
     flex-direction: row;
     width: 60%;
     height: 200px;
@@ -1578,13 +1609,22 @@ img {
     height: 100%;
   }
 
-  .add-image-label{
+  .add-image-label {
     width: 100%;
   }
 
-  .add-image{
+  .add-image {
     width: 300px;
     min-width: 200px;
+  }
+
+  .restaurant-rating-container {
+    display: flex;
+  }
+  
+  .restaurant-rating-container div{
+    text-align: center;
+    margin: 0 20px;
   }
 
 }
