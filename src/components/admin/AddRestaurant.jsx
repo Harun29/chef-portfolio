@@ -75,14 +75,14 @@ const AddRestaurant = () => {
     }
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     setRestaurant({
       title,
       location,
       fdescription: fullDescription,
       imgName,
     });
-  }, [title, location, fullDescription, imgName]);
+  }, [title, location, fullDescription, imgName]); */
 
   /* FUNCTION FOR EXPANDING TEXT AREA */
   const handleTextareaChange = (e, setFunction) => {
