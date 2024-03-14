@@ -23,7 +23,7 @@ const AddRestaurant = () => {
 
   const [food, setFood] = useState([0]);
   const [foodForUpload, setFoodForUpload] = useState([{}]);
-  const [overallFoodRating, setOverallFoodRating] = useState();
+  //const [overallFoodRating, setOverallFoodRating] = useState();
 
   const [exteriorRating, setExteriorRating] = useState(0);
   const [interiorRating, setInteriorRating] = useState(0);
@@ -44,7 +44,7 @@ const AddRestaurant = () => {
     }
   };
 
-  const uploadFile = async () => {
+  /* const uploadFile = async () => {
     try {
       if (imageUpload == null) return;
       const imageRef = ref(storage, `images/${imgName}`);
@@ -52,16 +52,16 @@ const AddRestaurant = () => {
     } catch (err) {
       console.error("Error adding image: ", err);
     }
-  };
+  }; */
 
-  const addData = async (data) => {
+  /* const addData = async (data) => {
     try {
       const docRef = await addDoc(collection(db, "restaurants"), data);
       console.log("Document written with ID: ", docRef.id);
     } catch (err) {
       console.error("Error adding document: ", err);
     }
-  };
+  }; */
 
   const handleSubmit = async (e) => {
     e.preventDefault();
