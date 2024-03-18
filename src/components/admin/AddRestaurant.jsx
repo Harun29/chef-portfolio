@@ -95,7 +95,7 @@ const AddRestaurant = () => {
         } catch (err) {
           console.error("Error adding image: ", err);
         }
-        const writtenSubDoc = await addDoc(subDocRef, {
+        await addDoc(subDocRef, {
           taste: food.taste,
           looks: food.looks,
           overall: food.overall,
