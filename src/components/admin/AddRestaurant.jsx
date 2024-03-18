@@ -654,6 +654,80 @@ const AddRestaurant = () => {
           </div>
         </div>
       </div>
+      <span className="add-food-header">Pregled prosjeka ocjena:</span>
+      <div className="restaurant-rating-container">
+      <div className="restaurant-looks">
+          <span>Hrana</span>
+          <div>
+            <Star
+              fill={overallFoodRating >= 1 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallFoodRating >= 2 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallFoodRating >= 3 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallFoodRating >= 4 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallFoodRating >= 5 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+          </div>
+          <span>Izgled restorana</span>
+          <div>
+            <Star
+              fill={overallLooksRating >= 1 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallLooksRating >= 2 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallLooksRating >= 3 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallLooksRating >= 4 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallLooksRating >= 5 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+          </div>
+          <span>Usluga</span>
+          <div>
+            <Star
+              fill={overallServiceRating >= 1 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallServiceRating >= 2 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallServiceRating >= 3 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallServiceRating >= 4 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+            <Star
+              fill={overallServiceRating >= 5 ? "gold" : "none"}
+              size={"40"}
+            ></Star>
+          </div>
+        </div>
+        </div>
       <button onClick={handleSubmit} className="recepie-submit finish">
         Finish
       </button>
