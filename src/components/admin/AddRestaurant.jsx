@@ -728,7 +728,7 @@ const AddRestaurant = () => {
           </div>
         </div>
         </div>
-      <button onClick={handleSubmit} className="recepie-submit finish">
+      <button onClick={handleSubmit} disabled={loading} className="recepie-submit finish">
         Finish
       </button>
     </div>
