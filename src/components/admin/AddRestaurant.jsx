@@ -131,7 +131,7 @@ const AddRestaurant = () => {
       overallLooksRating,
       overallServiceRating
     });
-  }, [title, location, fullDescription, imgName]);
+  }, [title, location, fullDescription, imgName, overallFoodRating, overallLooksRating, overallServiceRating]);
 
   /* FUNCTION FOR EXPANDING TEXT AREA */
   const handleTextareaChange = (e, setFunction) => {
