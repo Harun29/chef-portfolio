@@ -35,6 +35,23 @@ const AddRestaurant = () => {
   const [customerServiceRating, setCustomerServiceRating] = useState(0);
   const [overallServiceRating, setOverallServiceRating] = useState();
 
+  useEffect(() => {
+    const overallLooks = Math.round((exteriorRating + interiorRating + locationRating) / 3)
+    const overallService = Math.round((hostingRating + foodPresentationRating + customerServiceRating) / 3)
+    let overallFood = 0
+    let foodRatingCount = 0
+    foodForUpload.forEach(food => {
+      overallFood += food.taste
+      overallFood += food.looks
+      overallFood += food.overall
+      foodRatingCount += 3;
+    })
+    const foodRating = Math.round(overallFood / foodRatingCount);
+    setOverallLooksRating(overallLooks)
+    setOverallServiceRating(overallService)
+    setOverallFoodRating(foodRating)
+  }, [foodForUpload, exteriorRating, interiorRating, locationRating, hostingRating, foodPresentationRating, customerServiceRating])
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
