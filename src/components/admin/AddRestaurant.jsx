@@ -36,23 +36,34 @@ const AddRestaurant = () => {
   const [customerServiceRating, setCustomerServiceRating] = useState(0);
   const [overallServiceRating, setOverallServiceRating] = useState();
 
-
   useEffect(() => {
-    const overallLooks = Math.round((exteriorRating + interiorRating + locationRating) / 3)
-    const overallService = Math.round((hostingRating + foodPresentationRating + customerServiceRating) / 3)
-    let overallFood = 0
-    let foodRatingCount = 0
-    foodForUpload.forEach(food => {
-      overallFood += food.taste
-      overallFood += food.looks
-      overallFood += food.overall
+    const overallLooks = Math.round(
+      (exteriorRating + interiorRating + locationRating) / 3
+    );
+    const overallService = Math.round(
+      (hostingRating + foodPresentationRating + customerServiceRating) / 3
+    );
+    let overallFood = 0;
+    let foodRatingCount = 0;
+    foodForUpload.forEach((food) => {
+      overallFood += food.taste;
+      overallFood += food.looks;
+      overallFood += food.overall;
       foodRatingCount += 3;
-    })
+    });
     const foodRating = Math.round(overallFood / foodRatingCount);
-    setOverallLooksRating(overallLooks)
-    setOverallServiceRating(overallService)
-    setOverallFoodRating(foodRating)
-  }, [foodForUpload, exteriorRating, interiorRating, locationRating, hostingRating, foodPresentationRating, customerServiceRating])
+    setOverallLooksRating(overallLooks);
+    setOverallServiceRating(overallService);
+    setOverallFoodRating(foodRating);
+  }, [
+    foodForUpload,
+    exteriorRating,
+    interiorRating,
+    locationRating,
+    hostingRating,
+    foodPresentationRating,
+    customerServiceRating,
+  ]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -68,11 +79,11 @@ const AddRestaurant = () => {
       if (imageUpload == null) return;
       const imageRef = ref(storage, `images/${imgName}`);
       await uploadBytes(imageRef, imageUpload);
-      const imgLink = await getDownloadURL(ref(storage, `images/${imgName}`))
+      const imgLink = await getDownloadURL(ref(storage, `images/${imgName}`));
       setResImgLink(imgLink);
       const newRestaurant = restaurant;
       newRestaurant.image = resImgLink;
-      setRestaurant(newRestaurant)
+      setRestaurant(newRestaurant);
     } catch (err) {
       console.error("Error adding image: ", err);
     }
@@ -84,32 +95,35 @@ const AddRestaurant = () => {
       const writtenDoc = await addDoc(collectionRef, restaurant);
       const docRef = doc(db, "restaurants", writtenDoc.id);
       const subDocRef = collection(docRef, "foodratings");
-  
-      await Promise.all(foodForUpload.map(async(food) => {
-        let imgLink;
-        try {
-          if (food.imageUpload == null) return;
-          const imageRef = ref(storage, `images/${food.imgName}`);
-          await uploadBytes(imageRef, food.imageUpload);
-          imgLink = await getDownloadURL(ref(storage, `images/${food.imgName}`));
-        } catch (err) {
-          console.error("Error adding image: ", err);
-        }
-        await addDoc(subDocRef, {
-          taste: food.taste,
-          looks: food.looks,
-          overall: food.overall,
-          image: imgLink,
-          description: food.description
-        });
-      }));
-  
+
+      await Promise.all(
+        foodForUpload.map(async (food) => {
+          let imgLink;
+          try {
+            if (food.imageUpload == null) return;
+            const imageRef = ref(storage, `images/${food.imgName}`);
+            await uploadBytes(imageRef, food.imageUpload);
+            imgLink = await getDownloadURL(
+              ref(storage, `images/${food.imgName}`)
+            );
+          } catch (err) {
+            console.error("Error adding image: ", err);
+          }
+          await addDoc(subDocRef, {
+            taste: food.taste,
+            looks: food.looks,
+            overall: food.overall,
+            image: imgLink,
+            description: food.description,
+          });
+        })
+      );
+
       console.log("Document written with ID: ", writtenDoc.id);
     } catch (err) {
       console.error("Error adding document: ", err);
     }
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -129,9 +143,17 @@ const AddRestaurant = () => {
       fdescription: fullDescription,
       overallFoodRating,
       overallLooksRating,
-      overallServiceRating
+      overallServiceRating,
     });
-  }, [title, location, fullDescription, imgName, overallFoodRating, overallLooksRating, overallServiceRating]);
+  }, [
+    title,
+    location,
+    fullDescription,
+    imgName,
+    overallFoodRating,
+    overallLooksRating,
+    overallServiceRating,
+  ]);
 
   /* FUNCTION FOR EXPANDING TEXT AREA */
   const handleTextareaChange = (e, setFunction) => {
@@ -269,7 +291,11 @@ const AddRestaurant = () => {
         />
       </div>
 
-      <button onClick={() => setAddFood(true)} disabled={loading} className="recepie-submit">
+      <button
+        onClick={() => setAddFood(true)}
+        disabled={loading}
+        className="recepie-submit"
+      >
         Next
       </button>
 
@@ -656,7 +682,7 @@ const AddRestaurant = () => {
       </div>
       <span className="add-food-header">Pregled prosjeka ocjena:</span>
       <div className="restaurant-rating-container">
-      <div className="restaurant-looks">
+        <div className="restaurant-looks">
           <span>Hrana</span>
           <div>
             <Star
@@ -727,8 +753,12 @@ const AddRestaurant = () => {
             ></Star>
           </div>
         </div>
-        </div>
-      <button onClick={handleSubmit} disabled={loading} className="recepie-submit finish">
+      </div>
+      <button
+        onClick={handleSubmit}
+        disabled={loading}
+        className="recepie-submit finish"
+      >
         Finish
       </button>
     </div>

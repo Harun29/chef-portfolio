@@ -17,7 +17,7 @@ import { useAuth } from "../../context/AuthContext";
 
 const Recepies = () => {
   const [clickedStars, setClickedStars] = useState([]);
-  const [recepies, setRecepies] = useState([]);
+  const [restaurants, setRstaurants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [idToDelete, setIdToDelete] = useState("");
@@ -32,18 +32,15 @@ const Recepies = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const usersRef = collection(db, "recepies");
+      const usersRef = collection(db, "restaurants");
       const querySnapshot = await getDocs(usersRef);
       const promises = querySnapshot.docs.map(async (doc) => {
         const recepie = doc.data();
-        const url = await getDownloadURL(
-          ref(storage, `images/${recepie.imgName}`),
-        );
         return {
           id: doc.id,
           title: recepie.title,
           shortDescription: recepie.sdescription,
-          imageURL: url,
+          imageURL: ,
           imageName: recepie.imgName,
         };
       });
